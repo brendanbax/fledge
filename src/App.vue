@@ -1,23 +1,27 @@
 <template>
   <div id="app">
-    <Accordion />
-    <h1 class="text-hero">I am a heading</h1>
-    <button @click="createStyleSheet">Update Styles</button>
+    <div>
+      <h1 class="text-h1">I am a heading</h1>
+      <button @click="updatePageStyles">Update Styles</button>
+    </div>
+    <Demo />
   </div>
 </template>
 
 <script>
-import Accordion from '@/components/Accordion'
+import Demo from '@/components/Demo'
+import StyleReset from '@/assets/reset'
 
 export default {
   name: 'App',
   components: {
-    Accordion
+    Demo
   },
   data() {
     return {
       // Font
-      font_url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap',
+      font_primary_url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap',
+      font_secondary_url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap',
       // Colors
       color_light: '#FAFAFA',
       color_dark: '#2E282A',
@@ -27,6 +31,43 @@ export default {
       color_success: '#81E979',
       color_warning: '#F2BB05',
       color_danger: '#EF3E36',
+      // Type
+      text_h1: {
+        font_primary: true,
+        font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
+      text_h2: {
+        font_primary: true,
+        font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
+      text_h3: {
+        font_primary: true,
+        font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
+      text_h4: {
+        font_primary: true,
+        font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
+      text_h5: {
+        font_primary: true,
+        font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
+      text_h6: {
+        font_primary: true,
+        font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
       // Buttons
       button_primary: '',
       button_secondary: '',
@@ -38,13 +79,18 @@ export default {
   },
   methods: {
     createStyleSheet() {
-      let fontFamily = this.font_url.split('family=')[1].split(':')[0]
+      let font_primary = this.font_primary_url.split('family=')[1].split(':')[0]
+      let font_secondary = this.font_secondary_url.split('family=')[1].split(':')[0]
       
-      let css = `
-        @import url('${this.font_url}');
+      return `
+        ${StyleReset}
+        
+        @import url('${this.font_primary_url}');
+        @import url('${this.font_secondary_url}');
 
         :root {
-          --font: ${fontFamily};
+          --font-primary: ${font_primary};
+          --font-secondary: ${font_secondary};
           --color-light: ${this.color_light};
           --color-dark: ${this.color_dark};
           --color-primary: ${this.color_primary};
@@ -55,22 +101,55 @@ export default {
           --color-danger: ${this.color_danger};
         }
 
-        .text-hero { font-family: var(--font); }
-        .text-title { font-family: var(--font); }
-        .text-h1 { font-family: var(--font); }
-        .text-h2 { font-family: var(--font); }
-        .text-h3 { font-family: var(--font); }
-        .text-h4 { font-family: var(--font); }
-        .text-h5 { font-family: var(--font); }
-        .text-h6 { font-family: var(--font); }
-        .text-subtitle { font-family: var(--font); }
+        .text-h1 {
+          font-family: var(--font-${this.text_h1.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_h1.font_size};
+          font-weight: ${this.text_h1.font_weight};
+          line-height: ${this.text_h1.line_height};
+        }
+        .text-h2 {
+          font-family: var(--font-${this.text_h2.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_h2.font_size};
+          font-weight: ${this.text_h2.font_weight};
+          line-height: ${this.text_h2.line_height};
+        }
+        .text-h3 {
+          font-family: var(--font-${this.text_h3.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_h3.font_size};
+          font-weight: ${this.text_h3.font_weight};
+          line-height: ${this.text_h3.line_height};
+        }
+        .text-h4 {
+          font-family: var(--font-${this.text_h4.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_h4.font_size};
+          font-weight: ${this.text_h4.font_weight};
+          line-height: ${this.text_h4.line_height};
+        }
+        .text-h5 {
+          font-family: var(--font-${this.text_h5.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_h5.font_size};
+          font-weight: ${this.text_h5.font_weight};
+          line-height: ${this.text_h5.line_height};
+        }
+        .text-h6 {
+          font-family: var(--font-${this.text_h6.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_h6.font_size};
+          font-weight: ${this.text_h6.font_weight};
+          line-height: ${this.text_h6.line_height};
+        }
         .text-body { font-family: var(--font); }
         .text-overline { font-family: var(--font); }
         .text-caption { font-family: var(--font); }
-
-
       `
+    },
+    updatePageStyles() {
+      let css = this.createStyleSheet()
       let head = document.head || document.getElementsByTagName('head')[0]
+      
+      // Add logic here... if there's a style tag (that's not the app style)
+      // we need to grab it and replace it...
+      // document.getElementsByTagName('style')[1] -> should be the "new" one?
+
       let style = document.createElement('style')
 
       head.appendChild(style)
@@ -82,6 +161,9 @@ export default {
         style.appendChild(document.createTextNode(css))
       }
     }
+  },
+  mounted() {
+    this.updatePageStyles()
   }
 }
 </script>
