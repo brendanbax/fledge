@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <button class="bg-primary text-light btn-fab" :class="fabObject.class" @click="menuOpen = !menuOpen">{{ fabObject.icon }}</button>
-    <div v-if="menuOpen" id="menu">
+    <div v-if="menuOpen" id="menu" class="bg-white">
       <Accordion label="Colors">
         <fieldset>
           <label v-for="(color, idx) in colorOptions" :key="'color_' + idx">
@@ -106,20 +106,29 @@ export default {
 .margin-right {
   margin-right: 320px;
 }
-@media screen and (max-width: 640px) {
-  .margin-right {
-    margin-right: 0;
-  }
-}
 .right-320, .right-1 {
   position: fixed;
   bottom: 1rem;
+  z-index: 999;
 }
 .right-320 {
   right: calc(320px + 1rem);
 }
 .right-1 {
   right: 1rem;
+}
+@media screen and (max-width: 640px) {
+  #menu {
+    left: 0;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+  .margin-right {
+    margin-right: 0;
+  }
+  .right-320 {
+    right: 1rem;
+  }
 }
 /* Form Layout Styles */
 .input-row {

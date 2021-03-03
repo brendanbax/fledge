@@ -1,8 +1,9 @@
 <template>
   <div class="accordion-container">
-    <div class="accordion-header" @click="expanded = !expanded">
-      <span class="accordion-title text-h6">{{ label }}</span>
+    <div class="accordion-header">
+      <span class="accordion-title text-h6" @click="expanded = !expanded">{{ label }}</span>
       <button
+        class="accordion-button"
         @click="expanded = !expanded"
         @keyup.enter="expanded = !expanded"
         :class="computedClass"
@@ -46,18 +47,19 @@ export default {
 }
 .accordion-header {
   display: flex;
-  padding: .5rem 0;
   border-bottom: 1px solid gray;
   align-items: center;
-  cursor: pointer;
 }
 .accordion-title {
+  display: block;
   flex-grow: 1;
+  cursor: pointer;
+  padding: .5rem 0;
 }
 .accordion-content {
   margin-top: .75rem;
 }
-button {
+.accordion-button {
   border: none;
   background: none;
   font-size: 1rem;
