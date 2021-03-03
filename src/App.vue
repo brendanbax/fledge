@@ -102,6 +102,7 @@ export default {
         }
 
         .text-h1 {
+          color: red;
           font-family: var(--font-${this.text_h1.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_h1.font_size};
           font-weight: ${this.text_h1.font_weight};
@@ -145,21 +146,18 @@ export default {
     updatePageStyles() {
       let css = this.createStyleSheet()
       let head = document.head || document.getElementsByTagName('head')[0]
-      
-      // Add logic here... if there's a style tag (that's not the app style)
-      // we need to grab it and replace it...
-      // document.getElementsByTagName('style')[1] -> should be the "new" one?
+      let styles = document.getElementsByTagName('style')
+      let style
 
-      let style = document.createElement('style')
-
-      head.appendChild(style)
-
-      style.type = 'text/css'
-      if (style.styleSheet) {
-        style.styleSheet.cssText = css
+      if (styles.length >= 2) {
+        style = styles[1]
       } else {
-        style.appendChild(document.createTextNode(css))
+        style = document.createElement('style')
+        head.appendChild(style)
+        style.type = 'text/css'
       }
+
+      style.innerHTML = css
     }
   },
   mounted() {
