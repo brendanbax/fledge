@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-light demo-container">
+  <div class="bg-white demo-container">
     <!-- Nav -->
     <nav class="bg-primary nav-container">
       <div>Logo</div>
