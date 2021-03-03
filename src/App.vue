@@ -1,186 +1,68 @@
 <template>
   <div id="app">
-    <div>
-      <h1 class="text-h1">I am a heading</h1>
+    <div id="menu">
+      <fieldset>
+        <label>
+          <span>Light</span>
+          <input type="text" v-model="color_light" @change="updatePageStyles" />
+          <input type="color" v-model="color_light" @change="updatePageStyles" />
+        </label>
+        <label>
+          <span>Dark</span>
+          <input type="color" :value="color_dark" @change="updateColor('color_dark', $event)">
+        </label>
+        <label>
+          <span>Primary</span>
+          <input type="color" :value="color_primary" @change="updateColor('color_primary', $event)">
+        </label>
+        <label>
+          <span>Secondary</span>
+          <input type="color" :value="color_secondary" @change="updateColor('color_secondary', $event)">
+        </label>
+        <label>
+          <span>Info</span>
+          <input type="color" :value="color_info" @change="updateColor('color_info', $event)">
+        </label>
+        <label>
+          <span>Success</span>
+          <input type="color" :value="color_success" @change="updateColor('color_success', $event)">
+        </label>
+        <label>
+          <span>Warning</span>
+          <input type="color" :value="color_warning" @change="updateColor('color_warning', $event)">
+        </label>
+        <label>
+          <span>Danger</span>
+          <input type="color" :value="color_danger" @change="updateColor('color_danger', $event)">
+        </label>
+      </fieldset>
       <button @click="updatePageStyles">Update Styles</button>
     </div>
-    <Demo />
+    <Demo id="demo" />
   </div>
 </template>
 
 <script>
+import CSS from '@/mixins/css.js'
 import Demo from '@/components/Demo'
-import StyleReset from '@/assets/reset'
 
 export default {
   name: 'App',
+  mixins: [
+    CSS
+  ],
   components: {
     Demo
   },
   data() {
     return {
-      // Font
-      font_primary_url: 'https://fonts.googleapis.com/css2?family=Aleo:wght@300;400;700&display=swap',
-      font_secondary_url: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap',
-      // Colors
-      color_light: '#FAFAFA',
-      color_dark: '#2E282A',
-      color_primary: '#2B193D',
-      color_secondary: '#522F74',
-      color_info: '#008DD5',
-      color_success: '#81E979',
-      color_warning: '#F2BB05',
-      color_danger: '#EF3E36',
-      // Type
-      text_h1: {
-        font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
-        line_height: '1.5',
-      },
-      text_h2: {
-        font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
-        line_height: '1.5',
-      },
-      text_h3: {
-        font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
-        line_height: '1.5',
-      },
-      text_h4: {
-        font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
-        line_height: '1.5',
-      },
-      text_h5: {
-        font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
-        line_height: '1.5',
-      },
-      text_h6: {
-        font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
-        line_height: '1.5',
-      },
-      text_body: {
-        font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
-        line_height: '1.5',
-      },
-      text_overline: {
-        font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
-        line_height: '1.5',
-      },
-      text_caption: {
-        font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
-        line_height: '1.5',
-      },
-      // Buttons
-      button_primary: '',
-      button_secondary: '',
-      button_tertiary: '',
-      // Containers
-      container: '',
-      border_radius: '',
+      menuOpen: true,
     }
   },
   methods: {
-    createStyleSheet() {
-      let font_primary = this.font_primary_url.split('family=')[1].split(':')[0].replace('+', ' ')
-      let font_secondary = this.font_secondary_url.split('family=')[1].split(':')[0].replace('+', ' ')
-      
-      return `
-        @import url('${this.font_primary_url}');
-        @import url('${this.font_secondary_url}');
-        
-        ${StyleReset}
-
-        :root {
-          --font-primary: ${font_primary};
-          --font-secondary: ${font_secondary};
-          --color-light: ${this.color_light};
-          --color-dark: ${this.color_dark};
-          --color-primary: ${this.color_primary};
-          --color-secondary: ${this.color_secondary};
-          --color-info: ${this.color_info};
-          --color-success: ${this.color_success};
-          --color-warning: ${this.color_warning};
-          --color-danger: ${this.color_danger};
-        }
-
-        .text-h1 {
-          font-family: var(--font-${this.text_h1.font_primary ? 'primary' : 'secondary'});
-          font-size: ${this.text_h1.font_size};
-          font-weight: ${this.text_h1.font_weight};
-          line-height: ${this.text_h1.line_height};
-        }
-        .text-h2 {
-          font-family: var(--font-${this.text_h2.font_primary ? 'primary' : 'secondary'});
-          font-size: ${this.text_h2.font_size};
-          font-weight: ${this.text_h2.font_weight};
-          line-height: ${this.text_h2.line_height};
-        }
-        .text-h3 {
-          font-family: var(--font-${this.text_h3.font_primary ? 'primary' : 'secondary'});
-          font-size: ${this.text_h3.font_size};
-          font-weight: ${this.text_h3.font_weight};
-          line-height: ${this.text_h3.line_height};
-        }
-        .text-h4 {
-          font-family: var(--font-${this.text_h4.font_primary ? 'primary' : 'secondary'});
-          font-size: ${this.text_h4.font_size};
-          font-weight: ${this.text_h4.font_weight};
-          line-height: ${this.text_h4.line_height};
-        }
-        .text-h5 {
-          font-family: var(--font-${this.text_h5.font_primary ? 'primary' : 'secondary'});
-          font-size: ${this.text_h5.font_size};
-          font-weight: ${this.text_h5.font_weight};
-          line-height: ${this.text_h5.line_height};
-        }
-        .text-h6 {
-          font-family: var(--font-${this.text_h6.font_primary ? 'primary' : 'secondary'});
-          font-size: ${this.text_h6.font_size};
-          font-weight: ${this.text_h6.font_weight};
-          line-height: ${this.text_h6.line_height};
-        }
-        .text-body {
-          font-family: var(--font-${this.text_body.font_primary ? 'primary' : 'secondary'});
-        }
-        .text-overline {
-          font-family: var(--font-${this.text_overline.font_primary ? 'primary' : 'secondary'});
-        }
-        .text-caption {
-          font-family: var(--font-${this.text_caption.font_primary ? 'primary' : 'secondary'});
-        }
-      `
-    },
-    updatePageStyles() {
-      let css = this.createStyleSheet()
-      let head = document.head || document.getElementsByTagName('head')[0]
-      let styles = document.getElementsByTagName('style')
-      let style
-
-      if (styles.length >= 2) {
-        style = styles[1]
-      } else {
-        style = document.createElement('style')
-        head.appendChild(style)
-        style.type = 'text/css'
-      }
-
-      style.innerHTML = css
+    updateColor(object, event) {
+      let newColor = event.target.value
+      this[object] = newColor
     }
   },
   mounted() {
@@ -191,11 +73,23 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+#menu {
+  padding: 1rem;
+}
+#menu.open {
+  width: 320px;
+}
+#demo {
+  flex-grow: 1;
+}
+label {
+  display: flex;
+  justify-content: space-between;
+}
+label > input[type="color"] {
+  width: 100px;
 }
 </style>
