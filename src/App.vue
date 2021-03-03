@@ -1,42 +1,70 @@
 <template>
   <div id="app">
     <div id="menu">
-      <fieldset>
-        <label>
-          <span>Light</span>
-          <input type="text" v-model="color_light" @change="updatePageStyles" />
-          <input type="color" v-model="color_light" @change="updatePageStyles" />
-        </label>
-        <label>
-          <span>Dark</span>
-          <input type="color" :value="color_dark" @change="updateColor('color_dark', $event)">
-        </label>
-        <label>
-          <span>Primary</span>
-          <input type="color" :value="color_primary" @change="updateColor('color_primary', $event)">
-        </label>
-        <label>
-          <span>Secondary</span>
-          <input type="color" :value="color_secondary" @change="updateColor('color_secondary', $event)">
-        </label>
-        <label>
-          <span>Info</span>
-          <input type="color" :value="color_info" @change="updateColor('color_info', $event)">
-        </label>
-        <label>
-          <span>Success</span>
-          <input type="color" :value="color_success" @change="updateColor('color_success', $event)">
-        </label>
-        <label>
-          <span>Warning</span>
-          <input type="color" :value="color_warning" @change="updateColor('color_warning', $event)">
-        </label>
-        <label>
-          <span>Danger</span>
-          <input type="color" :value="color_danger" @change="updateColor('color_danger', $event)">
-        </label>
-      </fieldset>
-      <button @click="updatePageStyles">Update Styles</button>
+      <Accordion label="Colors">
+        <fieldset>
+          <label>
+            <div class="text-label">Light</div>
+            <div class="input-row">
+              <input class="text-body" type="text" v-model="color_light" @change="updatePageStyles" />
+              <input type="color" v-model="color_light" @change="updatePageStyles" />
+            </div>
+          </label>
+          <label>
+            <div class="text-label">Dark</div>
+            <div class="input-row">
+              <input class="text-body" type="text" v-model="color_dark" @change="updatePageStyles">
+              <input type="color" v-model="color_dark" @change="updatePageStyles">
+            </div>
+          </label>
+          <label>
+            <div class="text-label">Primary</div>
+            <div class="input-row">
+              <input class="text-body" type="text" v-model="color_primary" @change="updatePageStyles">
+              <input type="color" v-model="color_primary" @change="updatePageStyles">
+            </div>
+          </label>
+          <label>
+            <div class="text-label">Secondary</div>
+            <div class="input-row">
+              <input class="text-body" type="text" v-model="color_secondary" @change="updatePageStyles">
+              <input type="color" v-model="color_secondary" @change="updatePageStyles">
+            </div>
+          </label>
+          <label>
+            <div class="text-label">Info</div>
+            <div class="input-row">
+              <input class="text-body" type="text" v-model="color_info" @change="updatePageStyles">
+              <input type="color" v-model="color_info" @change="updatePageStyles">
+            </div>
+          </label>
+          <label>
+            <div class="text-label">Success</div>
+            <div class="input-row">
+              <input class="text-body" type="text" v-model="color_success" @change="updatePageStyles">
+              <input type="color" v-model="color_success" @change="updatePageStyles">
+            </div>
+          </label>
+          <label>
+            <div class="text-label">Warning</div>
+            <div class="input-row">
+              <input class="text-body" type="text" v-model="color_warning" @change="updatePageStyles">
+              <input type="color" v-model="color_warning" @change="updatePageStyles">
+            </div>
+          </label>
+          <label>
+            <div class="text-label">Danger</div>
+            <div class="input-row">
+              <input class="text-body" type="text" v-model="color_danger" @change="updatePageStyles">
+              <input type="color" v-model="color_danger" @change="updatePageStyles">
+            </div>
+          </label>
+        </fieldset>
+      </Accordion>
+      <Accordion label="Fonts"></Accordion>
+      <Accordion label="Type Scale"></Accordion>
+      <Accordion label="Shadows and Borders"></Accordion>
+      <Accordion label="Buttons"></Accordion>
     </div>
     <Demo id="demo" />
   </div>
@@ -44,6 +72,7 @@
 
 <script>
 import CSS from '@/mixins/css.js'
+import Accordion from '@/components/Accordion'
 import Demo from '@/components/Demo'
 
 export default {
@@ -52,6 +81,7 @@ export default {
     CSS
   ],
   components: {
+    Accordion,
     Demo
   },
   data() {
@@ -78,18 +108,30 @@ export default {
 }
 #menu {
   padding: 1rem;
-}
-#menu.open {
-  width: 320px;
+  min-width: 320px;
 }
 #demo {
   flex-grow: 1;
 }
-label {
-  display: flex;
-  justify-content: space-between;
+.input-row {
+  position: relative;
 }
-label > input[type="color"] {
-  width: 100px;
+.input-row > input[type="text"] {
+  padding: .5rem .25rem;
+  border: 1px solid black;
+  margin-top: .5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  text-transform: uppercase;
 }
+.input-row > input[type="color"] {
+  width: 2.5rem;
+  height: 1.5rem;
+  background: none;
+  border: none;
+  position: absolute;
+  right: 0;
+  bottom: 1.5rem;
+}
+
 </style>
