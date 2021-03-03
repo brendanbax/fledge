@@ -1,8 +1,13 @@
 <template>
   <div class="accordion-container">
-    <div class="accordion-header">
+    <div class="accordion-header" @click="expanded = !expanded">
       <span class="accordion-title text-h6">{{ label }}</span>
-      <button @click="expanded = !expanded" :class="computedClass">&#8963;</button>
+      <button
+        @click="expanded = !expanded"
+        @keyup.enter="expanded = !expanded"
+        :class="computedClass"
+        :aria-label="computedLabel"
+      >&#8963;</button>
     </div>
     <div v-if="expanded" class="accordion-content">
       <slot />
@@ -27,6 +32,9 @@ export default {
   computed: {
     computedClass() {
       return this.expanded ? 'arrow-up' : 'arrow-down'
+    },
+    computedLabel() {
+      return this.expanded ? `collapse ${this.label}` : `expand ${this.label}`
     }
   }
 }
@@ -41,6 +49,7 @@ export default {
   padding: .5rem 0;
   border-bottom: 1px solid gray;
   align-items: center;
+  cursor: pointer;
 }
 .accordion-title {
   flex-grow: 1;
