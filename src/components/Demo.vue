@@ -1,18 +1,18 @@
 <template>
-  <div>
+  <div class="bg-light demo-container">
     <!-- Nav -->
-    <nav>
+    <nav class="bg-primary nav-container">
       <div>Logo</div>
-      <ul>
-        <li><a>Home</a></li>
-        <li><a>Products</a></li>
-        <li><a>About</a></li>
-        <li><a>Contact</a></li>
+      <ul class="nav-link-container">
+        <li><a class="text-nav text-light nav-item">Home</a></li>
+        <li><a class="text-nav text-light nav-item">Products</a></li>
+        <li><a class="text-nav text-light nav-item">About</a></li>
+        <li><a class="text-nav text-light nav-item">Contact</a></li>
       </ul>
     </nav>
     <!-- Hero -->
     <section>
-      <h1>Hero Section</h1>
+      <h1 class="text-h1">Hero Section</h1>
       <p>Some great content about this product or service.</p>
       <div>
         <button>Primary CTA</button>
@@ -79,10 +79,24 @@
 
 <script>
 export default {
-
+  name: "Demo"
 }
 </script>
 
-<style scoped>
-
+<style>
+.demo-container {
+  min-height: 100vh;
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.nav-link-container {
+  display: flex;
+}
+.nav-item {
+  margin-left: 1rem;
+  cursor: pointer;
+}
 </style>
