@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div id="menu">
+    <button class="bg-primary text-light btn-fab" :class="fabObject.class" @click="menuOpen = !menuOpen">{{ fabObject.icon }}</button>
+    <div v-if="menuOpen" id="menu">
       <Accordion label="Colors">
         <fieldset>
           <label v-for="(color, idx) in colorOptions" :key="'color_' + idx">
@@ -31,7 +32,7 @@
         <p>attributes may include... label styles?  This may not be needed.</p>
       </Accordion>
     </div>
-    <Demo id="demo" />
+    <Demo :class="{ 'margin-right': menuOpen }" />
   </div>
 </template>
 
@@ -66,6 +67,13 @@ export default {
         {val: this.color_warning, name: 'Warning', prop: 'color_warning'},
         {val: this.color_danger, name: 'Danger', prop: 'color_danger'},
       ]
+    },
+    fabObject() {
+      if (this.menuOpen) {
+        return {icon: 'hide', class: 'right-320'}
+      } else {
+        return {icon: 'show', class: 'right-1'}
+      }
     }
   },
   methods: {
@@ -83,16 +91,37 @@ export default {
 
 <style>
 #app {
-  display: flex;
-  flex-direction: row-reverse;
+  position: relative;
 }
 #menu {
+  position: absolute;
   padding: 1rem;
   width: 320px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
-#demo {
-  flex-grow: 1;
+.margin-right {
+  margin-right: 320px;
 }
+@media screen and (max-width: 640px) {
+  .margin-right {
+    margin-right: 0;
+  }
+}
+.right-320, .right-1 {
+  position: fixed;
+  bottom: 1rem;
+}
+.right-320 {
+  right: calc(320px + 1rem);
+}
+.right-1 {
+  right: 1rem;
+}
+/* Form Layout Styles */
 .input-row {
   position: relative;
 }
