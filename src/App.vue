@@ -20,8 +20,8 @@ export default {
   data() {
     return {
       // Font
-      font_primary_url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap',
-      font_secondary_url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap',
+      font_primary_url: 'https://fonts.googleapis.com/css2?family=Aleo:wght@300;400;700&display=swap',
+      font_secondary_url: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap',
       // Colors
       color_light: '#FAFAFA',
       color_dark: '#2E282A',
@@ -68,6 +68,24 @@ export default {
         font_weight: '600',
         line_height: '1.5',
       },
+      text_body: {
+        font_primary: true,
+        font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
+      text_overline: {
+        font_primary: true,
+        font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
+      text_caption: {
+        font_primary: true,
+        font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
       // Buttons
       button_primary: '',
       button_secondary: '',
@@ -79,14 +97,14 @@ export default {
   },
   methods: {
     createStyleSheet() {
-      let font_primary = this.font_primary_url.split('family=')[1].split(':')[0]
-      let font_secondary = this.font_secondary_url.split('family=')[1].split(':')[0]
+      let font_primary = this.font_primary_url.split('family=')[1].split(':')[0].replace('+', ' ')
+      let font_secondary = this.font_secondary_url.split('family=')[1].split(':')[0].replace('+', ' ')
       
       return `
-        ${StyleReset}
-        
         @import url('${this.font_primary_url}');
         @import url('${this.font_secondary_url}');
+        
+        ${StyleReset}
 
         :root {
           --font-primary: ${font_primary};
@@ -102,7 +120,6 @@ export default {
         }
 
         .text-h1 {
-          color: red;
           font-family: var(--font-${this.text_h1.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_h1.font_size};
           font-weight: ${this.text_h1.font_weight};
@@ -138,9 +155,15 @@ export default {
           font-weight: ${this.text_h6.font_weight};
           line-height: ${this.text_h6.line_height};
         }
-        .text-body { font-family: var(--font); }
-        .text-overline { font-family: var(--font); }
-        .text-caption { font-family: var(--font); }
+        .text-body {
+          font-family: var(--font-${this.text_body.font_primary ? 'primary' : 'secondary'});
+        }
+        .text-overline {
+          font-family: var(--font-${this.text_overline.font_primary ? 'primary' : 'secondary'});
+        }
+        .text-caption {
+          font-family: var(--font-${this.text_caption.font_primary ? 'primary' : 'secondary'});
+        }
       `
     },
     updatePageStyles() {
