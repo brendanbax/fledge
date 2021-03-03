@@ -3,68 +3,33 @@
     <div id="menu">
       <Accordion label="Colors">
         <fieldset>
-          <label>
-            <div class="text-label">Light</div>
+          <label v-for="(color, idx) in colorOptions" :key="'color_' + idx">
+            <div class="text-label">{{ color.name }}</div>
             <div class="input-row">
-              <input class="text-body" type="text" v-model="color_light" @change="updatePageStyles" />
-              <input type="color" v-model="color_light" @change="updatePageStyles" />
-            </div>
-          </label>
-          <label>
-            <div class="text-label">Dark</div>
-            <div class="input-row">
-              <input class="text-body" type="text" v-model="color_dark" @change="updatePageStyles">
-              <input type="color" v-model="color_dark" @change="updatePageStyles">
-            </div>
-          </label>
-          <label>
-            <div class="text-label">Primary</div>
-            <div class="input-row">
-              <input class="text-body" type="text" v-model="color_primary" @change="updatePageStyles">
-              <input type="color" v-model="color_primary" @change="updatePageStyles">
-            </div>
-          </label>
-          <label>
-            <div class="text-label">Secondary</div>
-            <div class="input-row">
-              <input class="text-body" type="text" v-model="color_secondary" @change="updatePageStyles">
-              <input type="color" v-model="color_secondary" @change="updatePageStyles">
-            </div>
-          </label>
-          <label>
-            <div class="text-label">Info</div>
-            <div class="input-row">
-              <input class="text-body" type="text" v-model="color_info" @change="updatePageStyles">
-              <input type="color" v-model="color_info" @change="updatePageStyles">
-            </div>
-          </label>
-          <label>
-            <div class="text-label">Success</div>
-            <div class="input-row">
-              <input class="text-body" type="text" v-model="color_success" @change="updatePageStyles">
-              <input type="color" v-model="color_success" @change="updatePageStyles">
-            </div>
-          </label>
-          <label>
-            <div class="text-label">Warning</div>
-            <div class="input-row">
-              <input class="text-body" type="text" v-model="color_warning" @change="updatePageStyles">
-              <input type="color" v-model="color_warning" @change="updatePageStyles">
-            </div>
-          </label>
-          <label>
-            <div class="text-label">Danger</div>
-            <div class="input-row">
-              <input class="text-body" type="text" v-model="color_danger" @change="updatePageStyles">
-              <input type="color" v-model="color_danger" @change="updatePageStyles">
+              <input class="text-body" type="text" :value="color.val" @input="handleChange($event, color.prop)" />
+              <input type="color" :value="color.val" @change="handleChange($event, color.prop)" />
             </div>
           </label>
         </fieldset>
       </Accordion>
-      <Accordion label="Fonts"></Accordion>
-      <Accordion label="Type Scale"></Accordion>
-      <Accordion label="Shadows and Borders"></Accordion>
-      <Accordion label="Buttons"></Accordion>
+      <Accordion label="Fonts">
+        <p>Inputs for primary and secondary fonts.  Each would include a text input for the link as well as a "name" for use in style declarations.</p>
+      </Accordion>
+      <Accordion label="Type Scale">
+        <p>For each type, show options for font family, size, weight, and line-height.</p>
+      </Accordion>
+      <Accordion label="Shadows and Borders">
+        <p>Options for shadow styling (make it able to be added to), border thickness, and global border radius.</p>
+      </Accordion>
+      <Accordion label="Cards">
+        <p>attributes may include border radius, shadows, outlines, etc.</p>
+      </Accordion>
+      <Accordion label="Buttons">
+        <p>attributes may include border radius, shadows, outlines, etc.</p>
+      </Accordion>
+      <Accordion label="Inputs">
+        <p>attributes may include... label styles?  This may not be needed.</p>
+      </Accordion>
     </div>
     <Demo id="demo" />
   </div>
@@ -89,10 +54,25 @@ export default {
       menuOpen: true,
     }
   },
+  computed: {
+    colorOptions() {
+      return [
+        {val: this.color_light, name: 'Light', prop: 'color_light'},
+        {val: this.color_dark, name: 'Dark', prop: 'color_dark'},
+        {val: this.color_primary, name: 'Primary', prop: 'color_primary'},
+        {val: this.color_secondary, name: 'Secondary', prop: 'color_secondary'},
+        {val: this.color_info, name: 'Info', prop: 'color_info'},
+        {val: this.color_success, name: 'Success', prop: 'color_success'},
+        {val: this.color_warning, name: 'Warning', prop: 'color_warning'},
+        {val: this.color_danger, name: 'Danger', prop: 'color_danger'},
+      ]
+    }
+  },
   methods: {
-    updateColor(object, event) {
-      let newColor = event.target.value
-      this[object] = newColor
+    handleChange(event, prop) {
+      let newValue = event.target.value
+      this[prop] = newValue
+      this.updatePageStyles()
     }
   },
   mounted() {
@@ -108,7 +88,7 @@ export default {
 }
 #menu {
   padding: 1rem;
-  min-width: 320px;
+  width: 320px;
 }
 #demo {
   flex-grow: 1;
