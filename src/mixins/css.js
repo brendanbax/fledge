@@ -210,8 +210,10 @@ export default {
           line-height: ${this.text_button.line_height};
         }
 
+        .text-white { color: var(--color-white); }
         .text-light { color: var(--color-light); }
         .text-dark { color: var(--color-dark); }
+        .text-black { color: var(--color-black); }
         .text-primary { color: var(--color-primary); }
         .text-secondary { color: var(--color-secondary); }
         .text-info { color: var(--color-info); color: blue; }
@@ -219,8 +221,10 @@ export default {
         .text-warning { color: var(--color-warning); }
         .text-danger { color: var(--color-danger); }
 
+        .bg-white { background-color: var(--color-white); }
         .bg-light { background-color: var(--color-light); }
         .bg-dark { background-color: var(--color-dark); }
+        .bg-black { background-color: var(--color-black); }
         .bg-primary { background-color: var(--color-primary); }
         .bg-secondary { background-color: var(--color-secondary); }
         .bg-info { background-color: var(--color-info); color: blue; }
