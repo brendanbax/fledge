@@ -48,9 +48,9 @@ export default {
       },
       text_h6: {
         font_primary: true,
-        font_size: '3rem',
+        font_size: '1rem',
         font_weight: '600',
-        line_height: '1.5',
+        line_height: '1',
       },
       text_body: {
         font_primary: false,
@@ -67,6 +67,12 @@ export default {
       text_caption: {
         font_primary: false,
         font_size: '3rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
+      text_label: {
+        font_primary: false,
+        font_size: '0.875rem',
         font_weight: '600',
         line_height: '1.5',
       },
@@ -108,8 +114,10 @@ export default {
         :root {
           --font-primary: ${font_primary};
           --font-secondary: ${font_secondary};
+          --color-white: #FFFFFF;
           --color-light: ${this.color_light};
           --color-dark: ${this.color_dark};
+          --color-black: #000000;
           --color-primary: ${this.color_primary};
           --color-secondary: ${this.color_secondary};
           --color-info: ${this.color_info};
@@ -177,6 +185,12 @@ export default {
           font-weight: ${this.text_caption.font_weight};
           line-height: ${this.text_caption.line_height};
         }
+        .text-label {
+          font-family: var(--font-${this.text_label.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_label.font_size};
+          font-weight: ${this.text_label.font_weight};
+          line-height: ${this.text_label.line_height};
+        }
         .text-nav {
           font-family: var(--font-${this.text_nav.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_nav.font_size};
@@ -221,19 +235,20 @@ export default {
       let styles = document.getElementsByTagName('style')
       let style
 
-      if (styles.length >= 3) {
-        style = styles[2]
-      } else {
+      for (let i = 0; i < styles.length; i++) {
+        if (styles[i].title === 'custom') {
+          style = styles[i]
+        }
+      }
+
+      if (!style) {
         style = document.createElement('style')
         head.appendChild(style)
         style.type = 'text/css'
+        style.title = 'custom'
       }
-      if (style.styleSheet) {
-        // This is required for IE8 and below.
-        style.styleSheet.cssText = css
-      } else {
-        style.innerHTML = css
-      }
+      
+      style.innerHTML = css
     },
   }
 }
