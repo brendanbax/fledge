@@ -47,7 +47,7 @@ export default {
 }
 .accordion-header {
   display: flex;
-  border-bottom: 1px solid gray;
+  border-bottom: var(--border-width) solid var(--color-dark);
   align-items: center;
 }
 .accordion-title {
