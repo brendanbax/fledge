@@ -83,6 +83,12 @@ export default {
         font_weight: '600',
         line_height: '1.5',
       },
+      text_input: {
+        font_primary: false,
+        font_size: '0.875rem',
+        font_weight: '400',
+        line_height: '1.25',
+      },
       text_nav: {
         font_primary: false,
         font_size: '1.25rem',
@@ -101,10 +107,6 @@ export default {
         font_weight: '600',
         line_height: '1.5',
       },
-      // Containers
-      border_radius: '.5rem',
-      border_width: '.125rem',
-      box_shadow: '0 .375rem .5rem -.25rem rgba(0,0,0,0.5), 0 .5rem 1rem -.25rem rgba(0,0,0,0.15)',
       // Buttons
       button_primary: {
         fill: true,
@@ -127,6 +129,18 @@ export default {
       button_fab: {
         radius: '4rem'
       },
+      // Containers
+      border_radius: '.5rem',
+      border_width: '.125rem',
+      box_shadow: {
+        base: '0 .375rem .5rem -.25rem rgba(0,0,0,0.5)',
+        hover: '0 .375rem .5rem -.25rem rgba(0,0,0,0.5)'
+      },
+      card: {
+        border: false,
+        shadow: true,
+        radius: ''
+      }
     }
   },
   methods: {
@@ -140,6 +154,11 @@ export default {
         :root {
           --font-primary: ${this.font_primary.name};
           --font-secondary: ${this.font_secondary.name};
+
+          --border-width: ${this.border_width};
+          --shadow-base: ${this.box_shadow.base};
+          --shadow-hover: ${this.box_shadow.hover};
+
           --color-white: #FFFFFF;
           --color-light: ${this.color_light};
           --color-dark: ${this.color_dark};
@@ -173,6 +192,94 @@ export default {
         html {
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
+          font-size: 16px;
+        }
+
+        .btn-primary {
+          background-color: ${this.button_primary.fill ? 'var(--color-primary)' : 'transparent'};
+          border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
+          box-shadow: ${this.button_primary.shadow ? this.box_shadow : 'none'};
+          border-radius: ${this.button_primary.radius ? this.border_radius : 'none'};
+          color: ${this.button_primary.fill ? 'var(--color-light)' : this.button_primary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
+          font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_button.font_size};
+          font-weight: ${this.text_button.font_weight};
+          line-height: ${this.text_button.line_height};
+          cursor: pointer;
+          padding: .5rem 1rem;
+          transition: background-color 300ms, color 300ms, box-shadow 300ms;
+        }
+        .btn-primary:hover {
+          background-color: ${this.button_primary.fill ? 'var(--color-primary-light)' : this.button_primary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
+          border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
+          color: ${this.button_primary.fill ? 'var(--color-light)' : this.button_primary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
+          transition: background-color 300ms, color 300ms, box-shadow 300ms;
+        }
+        .btn-secondary {
+          background-color: ${this.button_secondary.fill ? 'var(--color-primary)' : 'transparent'};
+          border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
+          box-shadow: ${this.button_secondary.shadow ? this.box_shadow : 'none'};
+          border-radius: ${this.button_secondary.radius ? this.border_radius : 'none'};
+          color: ${this.button_secondary.fill ? 'var(--color-light)' : this.button_secondary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
+          font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_button.font_size};
+          font-weight: ${this.text_button.font_weight};
+          line-height: ${this.text_button.line_height};
+          cursor: pointer;
+          padding: .5rem 1rem;
+          transition: background-color 300ms, color 300ms, box-shadow 300ms;
+        }
+        .btn-secondary:hover {
+          background-color: ${this.button_secondary.fill ? 'var(--color-primary-light)' : this.button_secondary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
+          border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
+          color: ${this.button_secondary.fill ? 'var(--color-light)' : this.button_secondary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
+          transition: background-color 300ms, color 300ms, box-shadow 300ms;
+        }
+        .btn-tertiary {
+          background-color: ${this.button_tertiary.fill ? 'var(--color-primary)' : 'transparent'};
+          border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
+          box-shadow: ${this.button_tertiary.shadow ? this.box_shadow : 'none'};
+          border-radius: ${this.button_tertiary.radius ? this.border_radius : 'none'};
+          color: ${this.button_tertiary.fill ? 'var(--color-light)' : this.button_tertiary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
+          font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_button.font_size};
+          font-weight: ${this.text_button.font_weight};
+          line-height: ${this.text_button.line_height};
+          cursor: pointer;
+          padding: .5rem 1rem;
+          transition: background-color 300ms, color 300ms, box-shadow 300ms;
+        }
+        .btn-tertiary:hover {
+          background-color: ${this.button_tertiary.fill ? 'var(--color-primary-light)' : this.button_tertiary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
+          border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
+          color: ${this.button_tertiary.fill ? 'var(--color-light)' : this.button_tertiary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
+          transition: background-color 300ms, color 300ms, box-shadow 300ms;
+        }
+        .btn-small {
+          padding: .25rem .5rem;
+          font-size: calc(${this.text_button.font_size} * 0.875);
+        }
+        .btn-fab {
+          cursor: pointer;
+          border-radius: ${this.button_fab.radius};
+          box-shadow: ${this.box_shadow};
+          width: 3.75rem;
+          height: 3.75rem;
+          font-size: 1rem;
+          line-height: 3.75rem;
+          font-weight: bold;
+          text-align: center;
+        }
+        .card {
+          background-color: var(--color-white);
+          border: ${this.card.border ? this.border_width + ' solid var(--color-primary)' : 'none'};
+          border-radius: ${this.card.radius};
+          box-shadow: ${this.card.shadow ? 'var(--shadow-base)' : 'none'};
+          transition: box-shadow 300ms;
+        }
+        .card:hover {
+          box-shadow: ${this.card.shadow ? 'var(--shadow-hover)' : 'none'};
+          transition: box-shadow 300ms;
         }
 
         .text-h1 {
@@ -235,6 +342,12 @@ export default {
           font-weight: ${this.text_label.font_weight};
           line-height: ${this.text_label.line_height};
         }
+        .text-input {
+          font-family: var(--font-${this.text_input.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_input.font_size};
+          font-weight: ${this.text_input.font_weight};
+          line-height: ${this.text_input.line_height};
+        }
         .text-nav {
           font-family: var(--font-${this.text_nav.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_nav.font_size};
@@ -265,13 +378,14 @@ export default {
         .text-black { color: var(--color-black); }
         .text-primary { color: var(--color-primary); }
         .text-secondary { color: var(--color-secondary); }
-        .text-info { color: var(--color-info); color: blue; }
+        .text-info { color: var(--color-info); }
         .text-success { color: var(--color-success); }
         .text-warning { color: var(--color-warning); }
         .text-danger { color: var(--color-danger); }
 
         .text-center { text-align: center; }
-        .text-capitalize { text-transform: uppercase; }
+        .text-capitalize { text-transform: capitalize; }
+        .text-uppercase { text-transform: uppercase; }
 
         .bg-white { background-color: var(--color-white); }
         .bg-light { background-color: var(--color-light); }
@@ -283,82 +397,6 @@ export default {
         .bg-success { background-color: var(--color-success); }
         .bg-warning { background-color: var(--color-warning); }
         .bg-danger { background-color: var(--color-danger); }
-
-        .btn-primary {
-          background-color: ${this.button_primary.fill ? 'var(--color-primary)' : 'transparent'};
-          border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
-          box-shadow: ${this.button_primary.shadow ? this.box_shadow : ''};
-          border-radius: ${this.button_primary.radius ? this.border_radius : ''};
-          color: ${this.button_primary.fill ? 'var(--color-light)' : this.button_primary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
-          font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
-          font-size: ${this.text_button.font_size};
-          font-weight: ${this.text_button.font_weight};
-          line-height: ${this.text_button.line_height};
-          cursor: pointer;
-          padding: .5rem 1rem;
-          transition: background-color 300ms, color 300ms, box-shadow 300ms;
-        }
-        .btn-primary:hover {
-          background-color: ${this.button_primary.fill ? 'var(--color-primary-light)' : this.button_primary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
-          border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
-          color: ${this.button_primary.fill ? 'var(--color-light)' : this.button_primary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
-          transition: background-color 300ms, color 300ms, box-shadow 300ms;
-        }
-        .btn-secondary {
-          background-color: ${this.button_secondary.fill ? 'var(--color-primary)' : 'transparent'};
-          border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
-          box-shadow: ${this.button_secondary.shadow ? this.box_shadow : ''};
-          border-radius: ${this.button_secondary.radius ? this.border_radius : ''};
-          color: ${this.button_secondary.fill ? 'var(--color-light)' : this.button_secondary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
-          font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
-          font-size: ${this.text_button.font_size};
-          font-weight: ${this.text_button.font_weight};
-          line-height: ${this.text_button.line_height};
-          cursor: pointer;
-          padding: .5rem 1rem;
-          transition: background-color 300ms, color 300ms, box-shadow 300ms;
-        }
-        .btn-secondary:hover {
-          background-color: ${this.button_secondary.fill ? 'var(--color-primary-light)' : this.button_secondary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
-          border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
-          color: ${this.button_secondary.fill ? 'var(--color-light)' : this.button_secondary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
-          transition: background-color 300ms, color 300ms, box-shadow 300ms;
-        }
-        .btn-tertiary {
-          background-color: ${this.button_tertiary.fill ? 'var(--color-primary)' : 'transparent'};
-          border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
-          box-shadow: ${this.button_tertiary.shadow ? this.box_shadow : ''};
-          border-radius: ${this.button_tertiary.radius ? this.border_radius : ''};
-          color: ${this.button_tertiary.fill ? 'var(--color-light)' : this.button_tertiary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
-          font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
-          font-size: ${this.text_button.font_size};
-          font-weight: ${this.text_button.font_weight};
-          line-height: ${this.text_button.line_height};
-          cursor: pointer;
-          padding: .5rem 1rem;
-          transition: background-color 300ms, color 300ms, box-shadow 300ms;
-        }
-        .btn-tertiary:hover {
-          background-color: ${this.button_tertiary.fill ? 'var(--color-primary-light)' : this.button_tertiary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
-          border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
-          color: ${this.button_tertiary.fill ? 'var(--color-light)' : this.button_tertiary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
-          transition: background-color 300ms, color 300ms, box-shadow 300ms;
-        }
-        .btn-small {
-          padding: .25rem .5rem;
-          font-size: calc(${this.text_button.font_size} * 0.875);
-        }
-        .btn-fab {
-          cursor: pointer;
-          border-radius: ${this.button_fab.radius};
-          box-shadow: ${this.box_shadow};
-          width: 3.75rem;
-          height: 3.75rem;
-          font-size: 1rem;
-          line-height: 3.75rem;
-          font-weight: bold;
-          text-align: center;
-        }
       `
     },
     updatePageStyles() {

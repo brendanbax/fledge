@@ -10,7 +10,7 @@
         :aria-label="computedLabel"
       >&#8963;</button>
     </div>
-    <div v-if="expanded" class="accordion-content">
+    <div v-show="expanded" class="accordion-content">
       <slot />
     </div>
   </section>

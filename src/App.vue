@@ -22,7 +22,7 @@
           <label v-for="(color, idx) in colorOptions" :key="'color_' + idx">
             <div class="text-label">{{ color.name }}</div>
             <div class="input-row">
-              <input class="text-body text-capitalize" type="text" :value="color.val" @input="handleChange($event, color.prop)" />
+              <input class="text-input text-capitalize" type="text" :value="color.val" @input="handleChange($event, color.prop)" />
               <input type="color" :value="color.val" @change="handleChange($event, color.prop)" />
             </div>
           </label>
@@ -34,13 +34,13 @@
           <label>
             <div class="text-label">URL</div>
             <div class="input-row">
-              <input class="text-body" type="text" v-model="font_primary.url" />
+              <input class="text-input" type="text" v-model="font_primary.url" />
             </div>
           </label>
           <label>
             <div class="text-label">Name</div>
             <div class="input-row">
-              <input class="text-body" type="text" v-model="font_primary.name" />
+              <input class="text-input" type="text" v-model="font_primary.name" />
             </div>
           </label>
           <button class="btn-secondary btn-small" @click="updatePageStyles">Update</button>
@@ -50,13 +50,13 @@
           <label>
             <div class="text-label">URL</div>
             <div class="input-row">
-              <input class="text-body" type="text" v-model="font_secondary.url" />
+              <input class="text-input" type="text" v-model="font_secondary.url" />
             </div>
           </label>
           <label>
             <div class="text-label">Name</div>
             <div class="input-row">
-              <input class="text-body" type="text" v-model="font_secondary.name" />
+              <input class="text-input" type="text" v-model="font_secondary.name" />
             </div>
           </label>
           <button class="btn-secondary btn-small" @click="updatePageStyles">Update</button>
@@ -64,13 +64,13 @@
       </Accordion>
       <Accordion label="Type Scale">
         <fieldset v-for="(type, idx) in typeOptions" :key="'type_' + idx" class="mb-1">
-          <h6 :class="getTextClass(type.prop)">{{ type.name }}</h6>
+          <h6 :class="getTextClass(type.prop)" class="mb-1">{{ type.name }}</h6>
           <div class="mb-1 inset">
             <p class="text-label">Font Family</p>
             <fieldset>
               <label class="text-label inline-input">
                 <input
-                  class="text-body"
+                  class="text-input"
                   type="radio"
                   value="true"
                   v-model="type.val.font_primary"
@@ -80,7 +80,7 @@
               </label>
               <label class="text-label">
                 <input
-                  class="text-body"
+                  class="text-input"
                   type="radio"
                   value="false"
                   v-model="type.val.font_primary"
@@ -89,45 +89,48 @@
                 <span>Secondary</span>
               </label>
             </fieldset>
-            <label>
+            <label class="third">
               <div class="text-label">Font Size</div>
-              <input class="text-body" type="text" :value="type.val.font_size" @input="handleChange($event, 'font_size', type.prop)" />
+              <input class="text-input" type="text" :value="type.val.font_size" @input="handleChange($event, 'font_size', type.prop)" />
             </label>
-            <label>
+            <label class="third">
               <div class="text-label">Font Weight</div>
-              <input class="text-body" type="text" :value="type.val.font_weight" @input="handleChange($event, 'font_weight', type.prop)" />
+              <input class="text-input" type="text" :value="type.val.font_weight" @input="handleChange($event, 'font_weight', type.prop)" />
             </label>
-            <label>
+            <label class="third">
               <div class="text-label">Line Height</div>
-              <input class="text-body" type="text" :value="type.val.line_height" @input="handleChange($event, 'line_height', type.prop)" />
+              <input class="text-input" type="text" :value="type.val.line_height" @input="handleChange($event, 'line_height', type.prop)" />
             </label>
           </div>
         </fieldset>
       </Accordion>
-      <Accordion label="Shadows and Borders">
-        <p>Options for shadow styling (make it able to be added to), border thickness, and global border radius.</p>
+      <Accordion label="Shadows">
+        <ShadowConfig @shadow="handleShadowUpdate" />
+      </Accordion>
+      <Accordion label="Borders">
+        <p>attributes may include border thickness, etc.</p>
       </Accordion>
       <Accordion label="Cards">
-        <p>attributes may include border radius, shadows, outlines, etc.</p>
+        <p>attributes may include border radius, shadows (bool), border (bool), etc.</p>
       </Accordion>
       <Accordion label="Buttons">
         <fieldset v-for="(button, idx) in buttonOptions" :key="'btn_' + idx" class="mb-1">
           <h6 class="mb-1 text-center" :class="getBtnClass(button.prop)">{{ button.name }}</h6>
           <div class="mb-1 inset">
             <label class="inline-input">
-              <input class="text-body" type="checkbox" v-model="button.val.fill" @change="handleToggle('fill', button.prop)" />
+              <input class="text-input" type="checkbox" v-model="button.val.fill" @change="handleToggle('fill', button.prop)" />
               <span class="text-label">Fill</span>
             </label>
             <label class="inline-input">
-              <input class="text-body" type="checkbox" v-model="button.val.border" @change="handleToggle('border', button.prop)" />
+              <input class="text-input" type="checkbox" v-model="button.val.border" @change="handleToggle('border', button.prop)" />
               <span class="text-label">Border</span>
             </label>
             <label class="inline-input">
-              <input class="text-body" type="checkbox" v-model="button.val.radius" @change="handleToggle('radius', button.prop)" />
+              <input class="text-input" type="checkbox" v-model="button.val.radius" @change="handleToggle('radius', button.prop)" />
               <span class="text-label">Radius</span>
             </label>
             <label class="inline-input">
-              <input class="text-body" type="checkbox" v-model="button.val.shadow" @change="handleToggle('shadow', button.prop)" />
+              <input class="text-input" type="checkbox" v-model="button.val.shadow" @change="handleToggle('shadow', button.prop)" />
               <span class="text-label">Shadow</span>
             </label>
           </div>
@@ -145,6 +148,7 @@
 import { saveAs } from 'file-saver';
 import CSS from '@/mixins/css.js'
 import Accordion from '@/components/Accordion'
+import ShadowConfig from '@/components/ShadowConfig'
 import Demo from '@/components/Demo'
 
 export default {
@@ -154,6 +158,7 @@ export default {
   ],
   components: {
     Accordion,
+    ShadowConfig,
     Demo
   },
   data() {
@@ -186,6 +191,7 @@ export default {
         {val: this.text_overline, name: 'Overline', prop: 'text_overline'},
         {val: this.text_caption, name: 'Caption', prop: 'text_caption'},
         {val: this.text_label, name: 'Label', prop: 'text_label'},
+        {val: this.text_input, name: 'Input', prop: 'text_input'},
         {val: this.text_nav, name: 'Navigation', prop: 'text_nav'},
         {val: this.text_link, name: 'Link', prop: 'text_link'},
         {val: this.text_button, name: 'Button', prop: 'text_button'},
@@ -228,6 +234,10 @@ export default {
       } else {
         this[prop] = !!this[prop]
       }
+      this.updatePageStyles()
+    },
+    handleShadowUpdate(data) {
+      this.box_shadow = data
       this.updatePageStyles()
     },
     getTextClass(base) {
@@ -298,6 +308,13 @@ export default {
   padding-left: .75rem;
   border-left: 2px solid var(--color-info);
 }
+.third {
+  display: inline-block;
+  max-width: calc(33% - .5rem);
+}
+.third:not(:first-child) {
+  margin-left: .5rem;
+}
 input[type="text"] {
   padding: .5rem .25rem;
   border: 1px solid black;
@@ -315,13 +332,12 @@ input[type="checkbox"] {
   margin-right: 1rem;
 }
 input[type="color"] {
-  width: 2.5rem;
   height: 1.5rem;
   background: none;
   border: none;
   position: absolute;
   right: 0;
-  bottom: 1.5rem;
+  bottom: 1.375rem;
 }
 .primary-font-sample {
   font-family: var(--font-primary);
