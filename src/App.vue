@@ -156,7 +156,20 @@
         </fieldset>
       </Accordion>
       <Accordion label="Inputs">
-        <p>attributes may include... label styles?  This may not be needed.</p>
+        <fieldset class="mb-1">
+          <label class="inline-input mt-1">
+            <input class="text-input" type="checkbox" v-model="input.border" @change="updatePageStyles" />
+            <span class="text-label">Border</span>
+          </label>
+          <label class="inline-input mt-1">
+            <input class="text-input" type="checkbox" v-model="input.border_bottom" @change="updatePageStyles" />
+            <span class="text-label">Underline</span>
+          </label>
+          <label>
+            <div class="text-label">Border Radius</div>
+            <input class="text-input" type="text" v-model="input.radius" @input="updatePageStyles" />
+          </label>
+        </fieldset>
       </Accordion>
     </div>
     <Demo :class="{ 'margin-right': menuOpen }" />
@@ -339,7 +352,6 @@ export default {
   margin-left: .5rem;
 }
 input[type="text"] {
-  padding: .5rem .25rem;
   margin-top: .5rem;
   margin-bottom: 1rem;
   width: 100%;

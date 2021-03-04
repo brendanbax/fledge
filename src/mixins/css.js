@@ -131,7 +131,7 @@ export default {
       },
       // Containers
       border_radius: '.5rem',
-      border_width: '.125rem',
+      border_width: '.0625rem',
       box_shadow: {
         base: '0 .375rem .5rem -.25rem rgba(0,0,0,0.5)',
         hover: '0 .5rem 1rem -.25rem rgba(0,0,0,0.5)'
@@ -143,6 +143,7 @@ export default {
       },
       input: {
         border: true,
+        border_bottom: false,
         radius: '.25rem'
       }
     }
@@ -289,7 +290,13 @@ export default {
         input[type="text"],
         textarea,
         .form-input {
-          border: ${this.input.border ? this.border_width + ' solid var(--color-primary)' : 'none'};
+          padding: .5rem;
+          border-top: ${this.input.border ? this.border_width + ' solid var(--color-primary)' : 'none'};
+          border-left: ${this.input.border ? this.border_width + ' solid var(--color-primary)' : 'none'};
+          border-right: ${this.input.border ? this.border_width + ' solid var(--color-primary)' : 'none'};
+          border-bottom: ${this.input.border || this.input.border_bottom ? this.border_width + ' solid var(--color-primary)' : 'none'};
+          border: ;
+          border-radius: ${this.input.radius};
         }
 
         .text-h1 {
