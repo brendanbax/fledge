@@ -2,8 +2,13 @@
   <div id="app">
     <button class="bg-primary text-light btn-fab" :class="fabObject.class" @click="menuOpen = !menuOpen">{{ fabObject.icon }}</button>
     <div v-if="menuOpen" id="menu" class="bg-white">
+      <div class="mt-1 mb-1 flex-col">
+        <h3 class="text-h3">Getting Started</h3>
+        <p class="text-body mb-1">Expand each section below to customize part of your design system. Inputs are strings under the hood, so you can enter any valid CSS value for a given property <em>(ex: hex or RGB for color, px or rem for sizes)</em>. When finished, click the button to download a copy of the CSS file with all appropriate system classes.</p>
+        <button class="btn-primary mt-1">Download CSS</button>
+      </div>
       <Accordion label="Colors">
-        <fieldset class="field-set">
+        <fieldset class="mb-1">
           <label v-for="(color, idx) in colorOptions" :key="'color_' + idx">
             <div class="text-label">{{ color.name }}</div>
             <div class="input-row">
@@ -14,7 +19,7 @@
         </fieldset>
       </Accordion>
       <Accordion label="Fonts">
-        <fieldset class="field-set">
+        <fieldset class="mb-1">
           <label>
             <div class="text-label">Primary Font URL</div>
             <div class="input-row">
@@ -29,7 +34,7 @@
           </label>
           <button class="btn-secondary btn-small" @click="updatePageStyles">Update</button>
         </fieldset>
-        <fieldset class="field-set">
+        <fieldset class="mb-1">
           <label>
             <div class="text-label">Secondary Font URL</div>
             <div class="input-row">
@@ -46,9 +51,9 @@
         </fieldset>
       </Accordion>
       <Accordion label="Type Scale">
-        <fieldset v-for="(type, idx) in typeOptions" :key="'type_' + idx" class="field-set">
+        <fieldset v-for="(type, idx) in typeOptions" :key="'type_' + idx" class="mb-1">
           <h6 :class="getTextClass(type.prop)">{{ type.name }}</h6>
-          <div class="field-set inset">
+          <div class="mb-1 inset">
             <p class="text-label">Font Family</p>
             <fieldset>
               <label class="text-label inline-input">
@@ -94,9 +99,9 @@
         <p>attributes may include border radius, shadows, outlines, etc.</p>
       </Accordion>
       <Accordion label="Buttons">
-        <fieldset v-for="(button, idx) in buttonOptions" :key="'btn_' + idx" class="field-set">
+        <fieldset v-for="(button, idx) in buttonOptions" :key="'btn_' + idx" class="mb-1">
           <h6 class="text-h6">{{ button.name }}</h6>
-          <div class="field-set inset">
+          <div class="mb-1 inset">
             <label class="inline-input">
               <input class="text-body" type="checkbox" v-model="button.val.border" @change="handleToggle('border', button.prop)" />
               <span class="text-label">Border</span>
@@ -264,9 +269,6 @@ export default {
 .input-row {
   position: relative;
 }
-.field-set {
-  margin-top: 1rem;
-}
 .inset {
   margin-left: .25rem;
   padding-left: .75rem;
@@ -296,5 +298,18 @@ input[type="color"] {
   position: absolute;
   right: 0;
   bottom: 1.5rem;
+}
+/* Utility Classes */
+.flex, .flex-col {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.mt-1 {
+  margin-top: 1rem;
+}
+.mb-1 {
+  margin-bottom: 1rem;
 }
 </style>
