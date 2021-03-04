@@ -111,7 +111,23 @@
         <p>attributes may include border thickness, etc.</p>
       </Accordion>
       <Accordion label="Cards">
-        <p>attributes may include border radius, shadows (bool), border (bool), etc.</p>
+        <fieldset class="mb-1">
+          <div class="card sample-card mb-1" />
+          <div>
+            <label class="inline-input mt-1">
+              <input class="text-input" type="checkbox" v-model="card.border" @change="updatePageStyles" />
+              <span class="text-label">Border</span>
+            </label>
+            <label class="inline-input mt-1">
+              <input class="text-input" type="checkbox" v-model="card.shadow" @change="updatePageStyles" />
+              <span class="text-label">Shadow</span>
+            </label>
+          </div>
+          <label>
+            <div class="text-label">Border Radius</div>
+            <input class="text-input" type="text" v-model="card.radius" @input="updatePageStyles" />
+            </label>
+        </fieldset>
       </Accordion>
       <Accordion label="Buttons">
         <fieldset v-for="(button, idx) in buttonOptions" :key="'btn_' + idx" class="mb-1">
@@ -298,6 +314,10 @@ export default {
   .right-320 {
     right: 1rem;
   }
+}
+.sample-card {
+  width: 100%;
+  height: 4rem;
 }
 /* Form Layout Styles */
 .input-row {

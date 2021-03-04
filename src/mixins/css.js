@@ -134,12 +134,12 @@ export default {
       border_width: '.125rem',
       box_shadow: {
         base: '0 .375rem .5rem -.25rem rgba(0,0,0,0.5)',
-        hover: '0 .375rem .5rem -.25rem rgba(0,0,0,0.5)'
+        hover: '0 .5rem 1rem -.25rem rgba(0,0,0,0.5)'
       },
       card: {
         border: false,
         shadow: true,
-        radius: ''
+        radius: '.25rem'
       }
     }
   },

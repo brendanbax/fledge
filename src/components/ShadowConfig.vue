@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="shadow-sample text-caption text-center text-info">Sample</div>
+    <div class="shadow-sample text-caption text-center text-info" />
     <h6 class="text-h6 mb-1">Base</h6>
     <div class="mb-1 inset">
       <fieldset v-for="(shadow, index) in base" :key="'base_' + index" class="mb-1 shadow-container">
@@ -99,7 +99,8 @@ export default {
 }
 .shadow-sample,
 .shadow-hover-sample {
-  padding: .5rem;
+  width: 100%;
+  height: 4rem;
   margin-top: .5rem;
   margin-bottom: .5rem;
 }
