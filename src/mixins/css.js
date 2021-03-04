@@ -101,19 +101,19 @@ export default {
         line_height: '1.5',
       },
       // Containers
-      border_radius: '',
-      border_width: '',
+      border_radius: '.5rem',
+      border_width: '.125rem',
       box_shadow: '0 .25rem .75rem rgba(0,0,0,0.3), 0 .5rem 1rem rgba(0,0,0,0.3)',
       // Buttons
       button_primary: {
         border: false,
-        shadow: false,
+        shadow: true,
         radius: false,
       },
       button_secondary: {
-        border: false,
+        border: true,
         shadow: false,
-        radius: false,
+        radius: true,
       },
       button_tertiary: {
         border: false,
@@ -259,13 +259,47 @@ export default {
         .bg-danger { background-color: var(--color-danger); }
 
         .btn-primary {
+          background-color: ${this.button_primary.border ? 'transparent' : 'var(--color-primary)'};
+          border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
+          box-shadow: ${this.button_primary.shadow ? this.box_shadow : ''};
+          border-radius: ${this.button_primary.radius ? this.border_radius : ''};
+          color: ${this.button_primary.border ? 'var(--color-primary)': 'var(--color-light)'};
+          font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_button.font_size};
+          font-weight: ${this.text_button.font_weight};
+          line-height: ${this.text_button.line_height};
           cursor: pointer;
+          padding: .5rem 1rem;
         }
         .btn-secondary {
+          background-color: ${this.button_secondary.border ? 'transparent' : 'var(--color-primary)'};
+          border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
+          box-shadow: ${this.button_secondary.shadow ? this.box_shadow : ''};
+          border-radius: ${this.button_secondary.radius ? this.border_radius : ''};
+          color: ${this.button_secondary.border ? 'var(--color-primary)': 'var(--color-light)'};
+          font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_button.font_size};
+          font-weight: ${this.text_button.font_weight};
+          line-height: ${this.text_button.line_height};
           cursor: pointer;
+          padding: .5rem 1rem;
         }
         .btn-tertiary {
+          background-color: ${this.button_tertiary.border ? 'transparent' : 'var(--color-primary)'};
+          border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
+          box-shadow: ${this.button_tertiary.shadow ? this.box_shadow : ''};
+          border-radius: ${this.button_tertiary.radius ? this.border_radius : ''};
+          color: ${this.button_tertiary.border ? 'var(--color-primary)': 'var(--color-light)'};
+          font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_button.font_size};
+          font-weight: ${this.text_button.font_weight};
+          line-height: ${this.text_button.line_height};
           cursor: pointer;
+          padding: .5rem 1rem;
+        }
+        .btn-small {
+          padding: .25rem .5rem;
+          font-size: calc(${this.text_button.font_size} * 0.875);
         }
         .btn-fab {
           cursor: pointer;

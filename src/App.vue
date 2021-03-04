@@ -3,7 +3,7 @@
     <button class="bg-primary text-light btn-fab" :class="fabObject.class" @click="menuOpen = !menuOpen">{{ fabObject.icon }}</button>
     <div v-if="menuOpen" id="menu" class="bg-white">
       <Accordion label="Colors">
-        <fieldset>
+        <fieldset class="field-set">
           <label v-for="(color, idx) in colorOptions" :key="'color_' + idx">
             <div class="text-label">{{ color.name }}</div>
             <div class="input-row">
@@ -14,7 +14,7 @@
         </fieldset>
       </Accordion>
       <Accordion label="Fonts">
-        <fieldset>
+        <fieldset class="field-set">
           <label>
             <div class="text-label">Primary Font URL</div>
             <div class="input-row">
@@ -27,9 +27,9 @@
               <input class="text-body" type="text" v-model="font_primary.name" />
             </div>
           </label>
-          <button class="btn-secondary" @click="updatePageStyles">Update</button>
+          <button class="btn-secondary btn-small" @click="updatePageStyles">Update</button>
         </fieldset>
-        <fieldset>
+        <fieldset class="field-set">
           <label>
             <div class="text-label">Secondary Font URL</div>
             <div class="input-row">
@@ -39,10 +39,10 @@
           <label>
             <div class="text-label">Secondary Font Name</div>
             <div class="input-row">
-              <input class="text-body" type="text" v-model="font_secondary.url" />
+              <input class="text-body" type="text" v-model="font_secondary.name" />
             </div>
           </label>
-          <button class="btn-secondary" @click="updatePageStyles">Update</button>
+          <button class="btn-secondary btn-small" @click="updatePageStyles">Update</button>
         </fieldset>
       </Accordion>
       <Accordion label="Type Scale">
@@ -51,7 +51,7 @@
           <div class="field-set inset">
             <p class="text-label">Font Family</p>
             <fieldset>
-              <label class="text-label radio-input">
+              <label class="text-label inline-input">
                 <input
                   class="text-body"
                   type="radio"
@@ -94,7 +94,23 @@
         <p>attributes may include border radius, shadows, outlines, etc.</p>
       </Accordion>
       <Accordion label="Buttons">
-        <p>attributes may include border radius, shadows, outlines, etc.</p>
+        <fieldset v-for="(button, idx) in buttonOptions" :key="'btn_' + idx" class="field-set">
+          <h6 class="text-h6">{{ button.name }}</h6>
+          <div class="field-set inset">
+            <label class="inline-input">
+              <input class="text-body" type="checkbox" v-model="button.val.border" @change="handleToggle('border', button.prop)" />
+              <span class="text-label">Border</span>
+            </label>
+            <label class="inline-input">
+              <input class="text-body" type="checkbox" v-model="button.val.radius" @change="handleToggle('radius', button.prop)" />
+              <span class="text-label">Radius</span>
+            </label>
+            <label class="inline-input">
+              <input class="text-body" type="checkbox" v-model="button.val.shadow" @change="handleToggle('shadow', button.prop)" />
+              <span class="text-label">Shadow</span>
+            </label>
+          </div>
+        </fieldset>
       </Accordion>
       <Accordion label="Inputs">
         <p>attributes may include... label styles?  This may not be needed.</p>
@@ -153,6 +169,13 @@ export default {
         {val: this.text_button, name: 'Button', prop: 'text_button'},
       ]
     },
+    buttonOptions() {
+      return [
+        {val: this.button_primary, name: 'Primary', prop: 'button_primary'},
+        {val: this.button_secondary, name: 'Secondary', prop: 'button_secondary'},
+        {val: this.button_tertiary, name: 'Tertiary', prop: 'button_tertiary'},
+      ]
+    },
     fabObject() {
       if (this.menuOpen) {
         return {icon: 'hide', class: 'right-320'}
@@ -174,6 +197,14 @@ export default {
         this[parent][prop] = newValue
       } else {
         this[prop] = newValue
+      }
+      this.updatePageStyles()
+    },
+    handleToggle(prop, parent) {
+      if (parent) {
+        this[parent][prop] = !!this[parent][prop]
+      } else {
+        this[prop] = !!this[prop]
       }
       this.updatePageStyles()
     },
@@ -248,12 +279,13 @@ input[type="text"] {
   margin-bottom: 1rem;
   width: 100%;
 }
-input[type="radio"] {
+input[type="radio"],
+input[type="checkbox"] {
   margin-top: .5rem;
   margin-bottom: 1rem;
   margin-right: .5rem;
 }
-.radio-input {
+.inline-input {
   margin-right: 1rem;
 }
 input[type="color"] {
