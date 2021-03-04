@@ -140,6 +140,10 @@ export default {
         border: false,
         shadow: true,
         radius: '.25rem'
+      },
+      input: {
+        border: true,
+        radius: '.25rem'
       }
     }
   },
@@ -280,6 +284,12 @@ export default {
         .card:hover {
           box-shadow: ${this.card.shadow ? 'var(--shadow-hover)' : 'none'};
           transition: box-shadow 300ms;
+        }
+
+        input[type="text"],
+        textarea,
+        .form-input {
+          border: ${this.input.border ? this.border_width + ' solid var(--color-primary)' : 'none'};
         }
 
         .text-h1 {

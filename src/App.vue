@@ -108,7 +108,10 @@
         <ShadowConfig @shadow="handleShadowUpdate" />
       </Accordion>
       <Accordion label="Borders">
-        <p>attributes may include border thickness, etc.</p>
+        <label>
+          <div class="text-label">Border Thickness</div>
+          <input class="text-input" type="text" v-model="border_width" @input="updatePageStyles" />
+        </label>
       </Accordion>
       <Accordion label="Cards">
         <fieldset class="mb-1">
@@ -337,7 +340,6 @@ export default {
 }
 input[type="text"] {
   padding: .5rem .25rem;
-  border: 1px solid black;
   margin-top: .5rem;
   margin-bottom: 1rem;
   width: 100%;
