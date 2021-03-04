@@ -1,7 +1,7 @@
 <template>
-  <div class="accordion-container">
+  <section class="accordion-container">
     <div class="accordion-header">
-      <span class="accordion-title text-h6" @click="expanded = !expanded">{{ label }}</span>
+      <span class="accordion-title text-h5" @click="expanded = !expanded">{{ label }}</span>
       <button
         class="accordion-button"
         @click="expanded = !expanded"
@@ -13,7 +13,7 @@
     <div v-if="expanded" class="accordion-content">
       <slot />
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
