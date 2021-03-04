@@ -4,7 +4,16 @@
     <div v-show="menuOpen" id="menu" class="bg-white">
       <Accordion label="Getting Started">
         <div class="mb-1 flex-col">
-          <p class="text-body mb-1">Expand each section below to customize part of your design system. The text inputs convert to strings under the hood, so you can enter any valid CSS value for a given property <em>(ex: hex or RGB for color, px or rem for sizes)</em>. When finished, click the button to download a copy of the CSS file with all appropriate system classes.</p>
+          <p class="text-body mb-1">Expand each section below to customize part of your design system. Your changes will propigate throughout the demo application(s) so you can fine-tune your design decisions with real-time feedback. When finished, download a copy of the CSS file which includes the system classes and tokens.</p>
+          <h6 class="text-h6">Units</h6>
+          <p class="text-body mb-1">You can enter any valid CSS unit for any given property <em>(ex: hex or RGB for colors, px or rem for sizes)</em>. Rem is the default for this app, you can learn more about it <a class="text-link" href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units" target="_blank">here</a>. The base document size is 16px, so here's a quick converstion chart:</p>
+          <ul class="text-body mb-1">
+            <li>0.25rem = 4px</li>
+            <li>0.5rem = 8px</li>
+            <li>1rem = 16px</li>
+            <li>1.5rem = 24px</li>
+            <li>2rem = 32px</li>
+          </ul>
           <button class="btn-primary mt-1">Download CSS</button>
         </div>
       </Accordion>
@@ -21,14 +30,15 @@
       </Accordion>
       <Accordion label="Fonts">
         <fieldset class="mb-1">
+          <h6 class="primary-font-sample mb-1">Primary Font</h6>
           <label>
-            <div class="text-label">Primary Font URL</div>
+            <div class="text-label">URL</div>
             <div class="input-row">
               <input class="text-body" type="text" v-model="font_primary.url" />
             </div>
           </label>
           <label>
-            <div class="text-label">Primary Font Name</div>
+            <div class="text-label">Name</div>
             <div class="input-row">
               <input class="text-body" type="text" v-model="font_primary.name" />
             </div>
@@ -36,14 +46,15 @@
           <button class="btn-secondary btn-small" @click="updatePageStyles">Update</button>
         </fieldset>
         <fieldset class="mb-1">
+          <h6 class="secondary-font-sample mb-1">Secondary Font</h6>
           <label>
-            <div class="text-label">Secondary Font URL</div>
+            <div class="text-label">URL</div>
             <div class="input-row">
               <input class="text-body" type="text" v-model="font_secondary.url" />
             </div>
           </label>
           <label>
-            <div class="text-label">Secondary Font Name</div>
+            <div class="text-label">Name</div>
             <div class="input-row">
               <input class="text-body" type="text" v-model="font_secondary.name" />
             </div>
@@ -306,6 +317,14 @@ input[type="color"] {
   position: absolute;
   right: 0;
   bottom: 1.5rem;
+}
+.primary-font-sample {
+  font-family: var(--font-primary);
+  font-size: 1.125rem;
+}
+.secondary-font-sample {
+  font-family: var(--font-secondary);
+  font-size: 1.125rem;
 }
 /* Utility Classes */
 .flex, .flex-col {

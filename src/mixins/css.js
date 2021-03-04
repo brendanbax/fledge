@@ -246,7 +246,11 @@ export default {
           font-size: ${this.text_link.font_size};
           font-weight: ${this.text_link.font_weight};
           line-height: ${this.text_link.line_height};
+          color: ${this.color_primary};
           text-decoration: underline;
+        }
+        .text-link:visited {
+          color: ${this.color_primary};
         }
         .text-button {
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
