@@ -146,7 +146,7 @@
             </label>
             <label class="inline-input">
               <input class="text-input" type="checkbox" v-model="button.val.uppercase" @change="handleToggle('radius', button.prop)" />
-              <span class="text-label">Uppercase</span>
+              <span class="text-label">Caps</span>
             </label>
             <label class="inline-input">
               <input class="text-input" type="checkbox" v-model="button.val.shadow" @change="handleToggle('shadow', button.prop)" />

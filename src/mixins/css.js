@@ -16,8 +16,8 @@ export default {
       // Colors
       color_light: '#FAFAFA',
       color_dark: '#2E282A',
-      color_primary: '#2B193D',
-      color_secondary: '#522F74',
+      color_primary: '#009fbc',
+      color_secondary: '#00778c',
       color_info: '#008DD5',
       color_success: '#81E979',
       color_warning: '#F2BB05',
@@ -204,7 +204,7 @@ export default {
         .btn-primary {
           background-color: ${this.button_primary.fill ? 'var(--color-primary)' : 'transparent'};
           border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
-          box-shadow: ${this.button_primary.shadow ? this.box_shadow : 'none'};
+          box-shadow: ${this.button_primary.shadow ? this.box_shadow.base : 'none'};
           border-radius: ${this.button_radius};
           color: ${this.button_primary.fill ? 'var(--color-light)' : this.button_primary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
           text-transform: ${this.button_primary.uppercase ? 'uppercase' : 'none'};
@@ -220,12 +220,13 @@ export default {
           background-color: ${this.button_primary.fill ? 'var(--color-primary-light)' : this.button_primary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
           border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
           color: ${this.button_primary.fill ? 'var(--color-light)' : this.button_primary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
+          box-shadow: ${this.button_primary.shadow ? this.box_shadow.hover : 'none'};
           transition: background-color 300ms, color 300ms, box-shadow 300ms;
         }
         .btn-secondary {
           background-color: ${this.button_secondary.fill ? 'var(--color-primary)' : 'transparent'};
           border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
-          box-shadow: ${this.button_secondary.shadow ? this.box_shadow : 'none'};
+          box-shadow: ${this.button_secondary.shadow ? this.box_shadow.base : 'none'};
           border-radius: ${this.button_radius};
           color: ${this.button_secondary.fill ? 'var(--color-light)' : this.button_secondary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
           text-transform: ${this.button_secondary.uppercase ? 'uppercase' : 'none'};
@@ -240,13 +241,14 @@ export default {
         .btn-secondary:hover {
           background-color: ${this.button_secondary.fill ? 'var(--color-primary-light)' : this.button_secondary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
           border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
+          box-shadow: ${this.button_secondary.shadow ? this.box_shadow.hover : 'none'};
           color: ${this.button_secondary.fill ? 'var(--color-light)' : this.button_secondary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
           transition: background-color 300ms, color 300ms, box-shadow 300ms;
         }
         .btn-tertiary {
           background-color: ${this.button_tertiary.fill ? 'var(--color-primary)' : 'transparent'};
           border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
-          box-shadow: ${this.button_tertiary.shadow ? this.box_shadow : 'none'};
+          box-shadow: ${this.button_tertiary.shadow ? this.box_shadow.base : 'none'};
           border-radius: ${this.button_radius};
           color: ${this.button_tertiary.fill ? 'var(--color-light)' : this.button_tertiary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
           text-transform: ${this.button_tertiary.uppercase ? 'uppercase' : 'none'};
@@ -261,6 +263,7 @@ export default {
         .btn-tertiary:hover {
           background-color: ${this.button_tertiary.fill ? 'var(--color-primary-light)' : this.button_tertiary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
           border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
+          box-shadow: ${this.button_tertiary.shadow ? this.box_shadow.hover : 'none'};
           color: ${this.button_tertiary.fill ? 'var(--color-light)' : this.button_tertiary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
           transition: background-color 300ms, color 300ms, box-shadow 300ms;
         }
@@ -271,13 +274,18 @@ export default {
         .btn-fab {
           cursor: pointer;
           border-radius: ${this.button_fab.radius};
-          box-shadow: ${this.box_shadow};
+          box-shadow: ${this.box_shadow.base};
           width: 3.75rem;
           height: 3.75rem;
           font-size: 1rem;
           line-height: 3.75rem;
           font-weight: bold;
           text-align: center;
+          transition: box-shadow 300ms;
+        }
+        .btn-fab:hover {
+          box-shadow: ${this.box_shadow.hover};
+          transition: box-shadow 300ms;
         }
         .card {
           background-color: var(--color-white);
