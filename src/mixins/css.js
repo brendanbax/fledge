@@ -225,7 +225,6 @@ export default {
           font-weight: ${this.text_link.font_weight};
           line-height: ${this.text_link.line_height};
           text-decoration: underline;
-          cursor: pointer;
         }
         .text-button {
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
