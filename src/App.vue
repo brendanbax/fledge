@@ -14,7 +14,7 @@
             <li>1.5rem = 24px</li>
             <li>2rem = 32px</li>
           </ul>
-          <button class="btn-primary mt-1">Download CSS</button>
+          <button class="btn-primary mt-1" @click="handleDownload">Download CSS</button>
         </div>
       </Accordion>
       <Accordion label="Colors">
@@ -142,6 +142,7 @@
 </template>
 
 <script>
+import { saveAs } from 'file-saver';
 import CSS from '@/mixins/css.js'
 import Accordion from '@/components/Accordion'
 import Demo from '@/components/Demo'
@@ -234,6 +235,10 @@ export default {
     },
     getBtnClass(base) {
       return base.replace('button', 'btn').replace('_', '-')
+    },
+    handleDownload() {
+      let blob = new Blob([this.createStyleSheet()], {type: "text/plain;charset=utf-8"})
+      saveAs(blob, "fledge.css")
     }
   },
   mounted() {
