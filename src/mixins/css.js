@@ -107,16 +107,19 @@ export default {
       box_shadow: '0 .375rem .5rem -.25rem rgba(0,0,0,0.5), 0 .5rem 1rem -.25rem rgba(0,0,0,0.15)',
       // Buttons
       button_primary: {
+        fill: true,
         border: false,
         shadow: true,
         radius: true,
       },
       button_secondary: {
+        fill: false,
         border: true,
         shadow: false,
         radius: true,
       },
       button_tertiary: {
+        fill: false,
         border: false,
         shadow: false,
         radius: false,
@@ -278,11 +281,11 @@ export default {
         .bg-danger { background-color: var(--color-danger); }
 
         .btn-primary {
-          background-color: ${this.button_primary.border ? 'transparent' : 'var(--color-primary)'};
+          background-color: ${this.button_primary.fill ? 'var(--color-primary)' : 'transparent'};
           border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
           box-shadow: ${this.button_primary.shadow ? this.box_shadow : ''};
           border-radius: ${this.button_primary.radius ? this.border_radius : ''};
-          color: ${this.button_primary.border ? 'var(--color-primary)': 'var(--color-light)'};
+          color: ${this.button_primary.fill ? 'var(--color-light)' : this.button_primary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_button.font_size};
           font-weight: ${this.text_button.font_weight};
@@ -292,17 +295,17 @@ export default {
           transition: background-color 300ms, color 300ms, box-shadow 300ms;
         }
         .btn-primary:hover {
-          background-color: ${this.button_primary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'var(--color-primary-light)'};
+          background-color: ${this.button_primary.fill ? 'var(--color-primary-light)' : this.button_primary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
           border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
-          color: ${this.button_primary.border ? 'var(--color-primary-light)': 'var(--color-light)'};
+          color: ${this.button_primary.fill ? 'var(--color-light)' : this.button_primary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
           transition: background-color 300ms, color 300ms, box-shadow 300ms;
         }
         .btn-secondary {
-          background-color: ${this.button_secondary.border ? 'transparent' : 'var(--color-primary)'};
+          background-color: ${this.button_secondary.fill ? 'var(--color-primary)' : 'transparent'};
           border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
           box-shadow: ${this.button_secondary.shadow ? this.box_shadow : ''};
           border-radius: ${this.button_secondary.radius ? this.border_radius : ''};
-          color: ${this.button_secondary.border ? 'var(--color-primary)': 'var(--color-light)'};
+          color: ${this.button_secondary.fill ? 'var(--color-light)' : this.button_secondary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_button.font_size};
           font-weight: ${this.text_button.font_weight};
@@ -312,17 +315,17 @@ export default {
           transition: background-color 300ms, color 300ms, box-shadow 300ms;
         }
         .btn-secondary:hover {
-          background-color: ${this.button_secondary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'var(--color-primary-light)'};
+          background-color: ${this.button_secondary.fill ? 'var(--color-primary-light)' : this.button_secondary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
           border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
-          color: ${this.button_secondary.border ? 'var(--color-primary-light)': 'var(--color-light)'};
+          color: ${this.button_secondary.fill ? 'var(--color-light)' : this.button_secondary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
           transition: background-color 300ms, color 300ms, box-shadow 300ms;
         }
         .btn-tertiary {
-          background-color: ${this.button_tertiary.border ? 'transparent' : 'var(--color-primary)'};
+          background-color: ${this.button_tertiary.fill ? 'var(--color-primary)' : 'transparent'};
           border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
           box-shadow: ${this.button_tertiary.shadow ? this.box_shadow : ''};
           border-radius: ${this.button_tertiary.radius ? this.border_radius : ''};
-          color: ${this.button_tertiary.border ? 'var(--color-primary)': 'var(--color-light)'};
+          color: ${this.button_tertiary.fill ? 'var(--color-light)' : this.button_tertiary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_button.font_size};
           font-weight: ${this.text_button.font_weight};
@@ -332,9 +335,9 @@ export default {
           transition: background-color 300ms, color 300ms, box-shadow 300ms;
         }
         .btn-tertiary:hover {
-          background-color: ${this.button_tertiary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'var(--color-primary-light)'};
+          background-color: ${this.button_tertiary.fill ? 'var(--color-primary-light)' : this.button_tertiary.border ? tinycolor(this.color_primary).setAlpha(0.1).toString() : 'none'};
           border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary-light)' : this.border_width + ' solid transparent'};
-          color: ${this.button_tertiary.border ? 'var(--color-primary-light)': 'var(--color-light)'};
+          color: ${this.button_tertiary.fill ? 'var(--color-light)' : this.button_tertiary.border ? 'var(--color-primary-light)' : 'var(--color-primary-light)'};
           transition: background-color 300ms, color 300ms, box-shadow 300ms;
         }
         .btn-small {

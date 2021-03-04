@@ -101,8 +101,12 @@
       </Accordion>
       <Accordion label="Buttons">
         <fieldset v-for="(button, idx) in buttonOptions" :key="'btn_' + idx" class="mb-1">
-          <h6 class="text-h6">{{ button.name }}</h6>
+          <h6 class="mb-1 text-center" :class="getBtnClass(button.prop)">{{ button.name }}</h6>
           <div class="mb-1 inset">
+            <label class="inline-input">
+              <input class="text-body" type="checkbox" v-model="button.val.fill" @change="handleToggle('fill', button.prop)" />
+              <span class="text-label">Fill</span>
+            </label>
             <label class="inline-input">
               <input class="text-body" type="checkbox" v-model="button.val.border" @change="handleToggle('border', button.prop)" />
               <span class="text-label">Border</span>
@@ -216,6 +220,9 @@ export default {
     },
     getTextClass(base) {
       return base.replace('_', '-')
+    },
+    getBtnClass(base) {
+      return base.replace('button', 'btn').replace('_', '-')
     }
   },
   mounted() {
