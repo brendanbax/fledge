@@ -4,8 +4,14 @@ export default {
   data() {
     return {
       // Font
-      font_primary_url: 'https://fonts.googleapis.com/css2?family=Aleo:wght@300;400;700&display=swap',
-      font_secondary_url: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap',
+      font_primary: {
+        url: 'https://fonts.googleapis.com/css2?family=Aleo:wght@300;400;700&display=swap',
+        name: 'Aleo'
+      },
+      font_secondary: {
+        url: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap',
+        name: 'Lato'
+      },
       // Colors
       color_light: '#FAFAFA',
       color_dark: '#2E282A',
@@ -24,25 +30,25 @@ export default {
       },
       text_h2: {
         font_primary: true,
-        font_size: '3rem',
+        font_size: '2.5rem',
         font_weight: '600',
         line_height: '1.5',
       },
       text_h3: {
         font_primary: true,
-        font_size: '3rem',
+        font_size: '2rem',
         font_weight: '600',
         line_height: '1.5',
       },
       text_h4: {
         font_primary: true,
-        font_size: '3rem',
-        font_weight: '600',
+        font_size: '1.75rem',
+        font_weight: '400',
         line_height: '1.5',
       },
       text_h5: {
         font_primary: true,
-        font_size: '3rem',
+        font_size: '1.25rem',
         font_weight: '600',
         line_height: '1.5',
       },
@@ -66,8 +72,8 @@ export default {
       },
       text_caption: {
         font_primary: false,
-        font_size: '3rem',
-        font_weight: '600',
+        font_size: '1rem',
+        font_weight: '400',
         line_height: '1.5',
       },
       text_label: {
@@ -97,23 +103,39 @@ export default {
       // Containers
       border_radius: '',
       border_width: '',
-      box_shadow: '',
+      box_shadow: '0 .25rem .75rem rgba(0,0,0,0.3), 0 .5rem 1rem rgba(0,0,0,0.3)',
+      // Buttons
+      button_primary: {
+        border: false,
+        shadow: false,
+        radius: false,
+      },
+      button_secondary: {
+        border: false,
+        shadow: false,
+        radius: false,
+      },
+      button_tertiary: {
+        border: false,
+        shadow: false,
+        radius: false,
+      },
+      button_fab: {
+        radius: '4rem'
+      },
     }
   },
   methods: {
     createStyleSheet() {
-      let font_primary = this.font_primary_url.split('family=')[1].split(':')[0].replace('+', ' ')
-      let font_secondary = this.font_secondary_url.split('family=')[1].split(':')[0].replace('+', ' ')
-      
       return `
-        @import url('${this.font_primary_url}');
-        @import url('${this.font_secondary_url}');
+        @import url('${this.font_primary.url}');
+        @import url('${this.font_secondary.url}');
         
         ${StyleReset}
 
         :root {
-          --font-primary: ${font_primary};
-          --font-secondary: ${font_secondary};
+          --font-primary: ${this.font_primary.name};
+          --font-secondary: ${this.font_secondary.name};
           --color-white: #FFFFFF;
           --color-light: ${this.color_light};
           --color-dark: ${this.color_dark};
@@ -202,6 +224,8 @@ export default {
           font-size: ${this.text_link.font_size};
           font-weight: ${this.text_link.font_weight};
           line-height: ${this.text_link.line_height};
+          text-decoration: underline;
+          cursor: pointer;
         }
         .text-button {
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
@@ -221,6 +245,9 @@ export default {
         .text-warning { color: var(--color-warning); }
         .text-danger { color: var(--color-danger); }
 
+        .text-center { text-align: center; }
+        .text-capitalize { text-transform: uppercase; }
+
         .bg-white { background-color: var(--color-white); }
         .bg-light { background-color: var(--color-light); }
         .bg-dark { background-color: var(--color-dark); }
@@ -231,6 +258,27 @@ export default {
         .bg-success { background-color: var(--color-success); }
         .bg-warning { background-color: var(--color-warning); }
         .bg-danger { background-color: var(--color-danger); }
+
+        .btn-primary {
+          cursor: pointer;
+        }
+        .btn-secondary {
+          cursor: pointer;
+        }
+        .btn-tertiary {
+          cursor: pointer;
+        }
+        .btn-fab {
+          cursor: pointer;
+          border-radius: ${this.button_fab.radius};
+          box-shadow: ${this.box_shadow};
+          width: 3.75rem;
+          height: 3.75rem;
+          font-size: 1rem;
+          line-height: 3.75rem;
+          font-weight: bold;
+          text-align: center;
+        }
       `
     },
     updatePageStyles() {
