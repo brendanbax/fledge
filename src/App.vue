@@ -145,8 +145,8 @@
               <span class="text-label">Border</span>
             </label>
             <label class="inline-input">
-              <input class="text-input" type="checkbox" v-model="button.val.radius" @change="handleToggle('radius', button.prop)" />
-              <span class="text-label">Radius</span>
+              <input class="text-input" type="checkbox" v-model="button.val.uppercase" @change="handleToggle('radius', button.prop)" />
+              <span class="text-label">Uppercase</span>
             </label>
             <label class="inline-input">
               <input class="text-input" type="checkbox" v-model="button.val.shadow" @change="handleToggle('shadow', button.prop)" />
@@ -154,6 +154,10 @@
             </label>
           </div>
         </fieldset>
+        <label>
+          <div class="text-label">Border Radius</div>
+          <input class="text-input" type="text" v-model="button_radius" @input="updatePageStyles" />
+        </label>
       </Accordion>
       <Accordion label="Inputs">
         <fieldset class="mb-1">

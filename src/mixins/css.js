@@ -108,23 +108,24 @@ export default {
         line_height: '1.5',
       },
       // Buttons
+      button_radius: '.25rem',
       button_primary: {
         fill: true,
         border: false,
         shadow: true,
-        radius: true,
+        uppercase: false,
       },
       button_secondary: {
         fill: false,
         border: true,
         shadow: false,
-        radius: true,
+        uppercase: false,
       },
       button_tertiary: {
         fill: false,
         border: false,
         shadow: false,
-        radius: false,
+        uppercase: true,
       },
       button_fab: {
         radius: '4rem'
@@ -204,8 +205,9 @@ export default {
           background-color: ${this.button_primary.fill ? 'var(--color-primary)' : 'transparent'};
           border: ${this.button_primary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
           box-shadow: ${this.button_primary.shadow ? this.box_shadow : 'none'};
-          border-radius: ${this.button_primary.radius ? this.border_radius : 'none'};
+          border-radius: ${this.button_radius};
           color: ${this.button_primary.fill ? 'var(--color-light)' : this.button_primary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
+          text-transform: ${this.button_primary.uppercase ? 'uppercase' : 'none'};
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_button.font_size};
           font-weight: ${this.text_button.font_weight};
@@ -224,8 +226,9 @@ export default {
           background-color: ${this.button_secondary.fill ? 'var(--color-primary)' : 'transparent'};
           border: ${this.button_secondary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
           box-shadow: ${this.button_secondary.shadow ? this.box_shadow : 'none'};
-          border-radius: ${this.button_secondary.radius ? this.border_radius : 'none'};
+          border-radius: ${this.button_radius};
           color: ${this.button_secondary.fill ? 'var(--color-light)' : this.button_secondary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
+          text-transform: ${this.button_secondary.uppercase ? 'uppercase' : 'none'};
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_button.font_size};
           font-weight: ${this.text_button.font_weight};
@@ -244,8 +247,9 @@ export default {
           background-color: ${this.button_tertiary.fill ? 'var(--color-primary)' : 'transparent'};
           border: ${this.button_tertiary.border ? this.border_width + ' solid var(--color-primary)' : this.border_width + ' solid transparent'};
           box-shadow: ${this.button_tertiary.shadow ? this.box_shadow : 'none'};
-          border-radius: ${this.button_tertiary.radius ? this.border_radius : 'none'};
+          border-radius: ${this.button_radius};
           color: ${this.button_tertiary.fill ? 'var(--color-light)' : this.button_tertiary.border ? 'var(--color-primary)' : 'var(--color-primary)'};
+          text-transform: ${this.button_tertiary.uppercase ? 'uppercase' : 'none'};
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
           font-size: ${this.text_button.font_size};
           font-weight: ${this.text_button.font_weight};
