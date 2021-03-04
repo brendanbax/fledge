@@ -43,6 +43,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button {
+	border: none;
+	background: none;
+}
 * {
 	box-sizing: border-box;
 }
