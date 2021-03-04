@@ -272,7 +272,7 @@ export default {
         .bg-black { background-color: var(--color-black); }
         .bg-primary { background-color: var(--color-primary); }
         .bg-secondary { background-color: var(--color-secondary); }
-        .bg-info { background-color: var(--color-info); color: blue; }
+        .bg-info { background-color: var(--color-info); }
         .bg-success { background-color: var(--color-success); }
         .bg-warning { background-color: var(--color-warning); }
         .bg-danger { background-color: var(--color-danger); }
