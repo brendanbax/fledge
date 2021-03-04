@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <button class="bg-primary text-light btn-fab" :class="fabObject.class" @click="menuOpen = !menuOpen">{{ fabObject.icon }}</button>
-    <div v-if="menuOpen" id="menu" class="bg-white">
-      <div class="mt-1 mb-1 flex-col">
-        <h3 class="text-h3">Getting Started</h3>
-        <p class="text-body mb-1">Expand each section below to customize part of your design system. Inputs are strings under the hood, so you can enter any valid CSS value for a given property <em>(ex: hex or RGB for color, px or rem for sizes)</em>. When finished, click the button to download a copy of the CSS file with all appropriate system classes.</p>
-        <button class="btn-primary mt-1">Download CSS</button>
-      </div>
+    <div v-show="menuOpen" id="menu" class="bg-white">
+      <Accordion label="Getting Started">
+        <div class="mb-1 flex-col">
+          <p class="text-body mb-1">Expand each section below to customize part of your design system. The text inputs convert to strings under the hood, so you can enter any valid CSS value for a given property <em>(ex: hex or RGB for color, px or rem for sizes)</em>. When finished, click the button to download a copy of the CSS file with all appropriate system classes.</p>
+          <button class="btn-primary mt-1">Download CSS</button>
+        </div>
+      </Accordion>
       <Accordion label="Colors">
         <fieldset class="mb-1">
           <label v-for="(color, idx) in colorOptions" :key="'color_' + idx">
@@ -256,7 +257,7 @@ export default {
   #menu {
     left: 0;
     width: 100%;
-    margin-bottom: 3rem;
+    margin-bottom: 6rem;
   }
   .margin-right {
     margin-right: 0;
