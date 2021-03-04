@@ -1,4 +1,5 @@
-import StyleReset from '@/assets/reset'
+import StyleReset from '@/utils/reset'
+import tinycolor from 'tinycolor2'
 
 export default {
   data() {
@@ -103,12 +104,12 @@ export default {
       // Containers
       border_radius: '.5rem',
       border_width: '.125rem',
-      box_shadow: '0 .25rem .75rem rgba(0,0,0,0.3), 0 .5rem 1rem rgba(0,0,0,0.3)',
+      box_shadow: '0 .375rem .5rem -.25rem rgba(0,0,0,0.5), 0 .5rem 1rem -.25rem rgba(0,0,0,0.15)',
       // Buttons
       button_primary: {
         border: false,
         shadow: true,
-        radius: false,
+        radius: true,
       },
       button_secondary: {
         border: true,
@@ -140,12 +141,30 @@ export default {
           --color-light: ${this.color_light};
           --color-dark: ${this.color_dark};
           --color-black: #000000;
+
+          --color-primary-light: ${tinycolor(this.color_primary).lighten(10).toString()};
           --color-primary: ${this.color_primary};
+          --color-primary-dark: ${tinycolor(this.color_primary).darken(5).toString()};
+          
+          --color-secondary-light: ${tinycolor(this.color_secondary).lighten(10).toString()};
           --color-secondary: ${this.color_secondary};
+          --color-secondary-dark: ${tinycolor(this.color_secondary).darken(5).toString()};
+          
+          --color-info-light: ${tinycolor(this.color_info).lighten(10).toString()};
           --color-info: ${this.color_info};
+          --color-info-dark: ${tinycolor(this.color_info).darken(5).toString()};
+          
+          --color-success-light: ${tinycolor(this.color_success).lighten(10).toString()};
           --color-success: ${this.color_success};
+          --color-success-dark: ${tinycolor(this.color_success).darken(5).toString()};
+          
+          --color-warning-light: ${tinycolor(this.color_warning).lighten(10).toString()};
           --color-warning: ${this.color_warning};
+          --color-warning-dark: ${tinycolor(this.color_warning).darken(5).toString()};
+          
+          --color-danger-light: ${tinycolor(this.color_danger).lighten(10).toString()};
           --color-danger: ${this.color_danger};
+          --color-danger-dark: ${tinycolor(this.color_danger).darken(5).toString()};
         }
 
         html {
@@ -270,6 +289,9 @@ export default {
           line-height: ${this.text_button.line_height};
           cursor: pointer;
           padding: .5rem 1rem;
+        }
+        .btn-primary:hover {
+          background-color: var(--color-primary-light);
         }
         .btn-secondary {
           background-color: ${this.button_secondary.border ? 'transparent' : 'var(--color-primary)'};
