@@ -427,4 +427,16 @@ input[type="color"] {
 .mb-1 {
   margin-bottom: 1rem;
 }
+.mt-2 {
+  margin-top: 2rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.mt-3 {
+  margin-top: 3rem;
+}
+.mb-3 {
+  margin-bottom: 3rem;
+}
 </style>
