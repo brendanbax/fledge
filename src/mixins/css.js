@@ -67,13 +67,19 @@ export default {
       },
       text_overline: {
         font_primary: false,
-        font_size: '0.75rem',
-        font_weight: '400',
+        font_size: '0.875rem',
+        font_weight: '600',
+        line_height: '1.5',
+      },
+      text_quote: {
+        font_primary: false,
+        font_size: '1.25rem',
+        font_weight: '200',
         line_height: '1.5',
       },
       text_caption: {
         font_primary: false,
-        font_size: '.75rem',
+        font_size: '0.75rem',
         font_weight: '400',
         line_height: '1.5',
       },
@@ -136,7 +142,8 @@ export default {
       card: {
         border: false,
         shadow: true,
-        radius: '.25rem'
+        radius: '.25rem',
+        hover: true,
       },
       input: {
         border: true,
@@ -295,7 +302,7 @@ export default {
           transition: box-shadow 300ms;
         }
         .card:hover {
-          box-shadow: ${this.card.shadow ? 'var(--shadow-hover)' : 'none'};
+          box-shadow: ${this.card.shadow ? this.card.hover ? 'var(--shadow-hover)' : 'var(--shadow-base)' : 'none'};
           transition: box-shadow 300ms;
         }
 
@@ -358,6 +365,31 @@ export default {
           font-size: ${this.text_overline.font_size};
           font-weight: ${this.text_overline.font_weight};
           line-height: ${this.text_overline.line_height};
+        }
+        .text-quote {
+          font-family: var(--font-${this.text_quote.font_primary ? 'primary' : 'secondary'});
+          font-size: ${this.text_quote.font_size};
+          font-weight: ${this.text_quote.font_weight};
+          line-height: ${this.text_quote.line_height};
+          position: relative;
+        }
+        .text-quote::before,
+        .text-quote::after {
+          font-size: calc(${this.text_quote.font_size} * 5);
+          line-height: ${this.text_quote.font_size};
+          position: absolute;
+          color: var(--color-primary-light);
+          opacity: 0.5;
+        }
+        .text-quote::before {
+          content: '\\201C';
+          top: ${this.text_quote.font_size};
+          left: -.5ch;
+        }
+        .text-quote::after {
+          content: '\\201D';
+          display: inline;
+          bottom: calc(-${this.text_quote.font_size} * 1.5);
         }
         .text-caption {
           font-family: var(--font-${this.text_caption.font_primary ? 'primary' : 'secondary'});
