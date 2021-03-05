@@ -2,7 +2,7 @@
   <div id="app">
     <button class="bg-primary text-light btn-fab" :class="fabObject.class" @click="menuOpen = !menuOpen">{{ fabObject.icon }}</button>
     <div v-show="menuOpen" id="menu" class="bg-white">
-      <Accordion label="Getting Started">
+      <Accordion label="Getting Started" :expand="showGetStarted">
         <div class="mb-1 flex-col">
           <p class="text-body mb-1">Expand each section below to customize part of your design system. Your changes will propigate throughout the demo application(s) so you can fine-tune your design decisions with real-time feedback. When finished, download a copy of the CSS file which includes the system classes and tokens.</p>
           <h6 class="text-h6">Units</h6>
@@ -17,18 +17,18 @@
           <button class="btn-primary mt-1" @click="handleDownload">Download CSS</button>
         </div>
       </Accordion>
-      <Accordion label="Colors">
+      <Accordion label="Colors" :expand="showColors">
         <fieldset class="mb-1">
           <label v-for="(color, idx) in colorOptions" :key="'color_' + idx">
             <div class="text-label">{{ color.name }}</div>
             <div class="input-row">
-              <input class="text-input text-capitalize" type="text" :value="color.val" @input="handleChange($event, color.prop)" />
+              <input class="text-input text-uppercase" type="text" :value="color.val" @input="handleChange($event, color.prop)" />
               <input type="color" :value="color.val" @change="handleChange($event, color.prop)" />
             </div>
           </label>
         </fieldset>
       </Accordion>
-      <Accordion label="Fonts">
+      <Accordion label="Fonts" :expand="showFonts">
         <fieldset class="mb-1">
           <h6 class="primary-font-sample mb-1">Primary Font</h6>
           <label>
@@ -62,7 +62,7 @@
           <button class="btn-secondary btn-small" @click="updatePageStyles">Update</button>
         </fieldset>
       </Accordion>
-      <Accordion label="Type Scale">
+      <Accordion label="Type Scale" :expand="showType">
         <fieldset v-for="(type, idx) in typeOptions" :key="'type_' + idx" class="mb-1">
           <h6 :class="getTextClass(type.prop)" class="mb-1">{{ type.name }}</h6>
           <div class="mb-1 inset">
@@ -132,7 +132,7 @@
             </label>
         </fieldset>
       </Accordion>
-      <Accordion label="Buttons">
+      <Accordion label="Buttons" :expand="showButtons">
         <fieldset v-for="(button, idx) in buttonOptions" :key="'btn_' + idx" class="mb-1">
           <h6 class="mb-1 text-center" :class="getBtnClass(button.prop)">{{ button.name }}</h6>
           <div class="mb-1 inset">
@@ -176,7 +176,15 @@
         </fieldset>
       </Accordion>
     </div>
-    <Demo :class="{ 'margin-right': menuOpen }" />
+    <Demo
+      :class="{ 'margin-right': menuOpen }"
+      :menu-open="menuOpen"
+      @getstarted="handleAccordion('showGetStarted')"
+      @colors="handleAccordion('showColors')"
+      @fonts="handleAccordion('showFonts')"
+      @type="handleAccordion('showType')"
+      @buttons="handleAccordion('showButtons')"
+    />
   </div>
 </template>
 
@@ -200,6 +208,11 @@ export default {
   data() {
     return {
       menuOpen: true,
+      showGetStarted: false,
+      showColors: false,
+      showFonts: false,
+      showType: false,
+      showButtons: false,
     }
   },
   computed: {
@@ -285,6 +298,10 @@ export default {
     handleDownload() {
       let blob = new Blob([this.createStyleSheet()], {type: "text/plain;charset=utf-8"})
       saveAs(blob, "fledge.css")
+    },
+    handleAccordion(val) {
+      this[val] = true
+      this.menuOpen = true
     }
   },
   mounted() {
@@ -298,7 +315,7 @@ export default {
   position: relative;
 }
 #menu {
-  position: absolute;
+  position: fixed;
   padding: 1rem;
   width: 375px;
   right: 0;
@@ -307,6 +324,10 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
   border-left: 1px solid var(--color-dark);
+  z-index: 990;
+}
+#menu > section:last-child {
+  margin-bottom: 2rem;
 }
 .margin-right {
   margin-right: 375px;
@@ -326,6 +347,8 @@ export default {
   #menu {
     left: 0;
     width: 100%;
+  }
+  #menu > section:last-child {
     margin-bottom: 6rem;
   }
   .margin-right {
@@ -386,6 +409,9 @@ input[type="color"] {
   font-size: 1.125rem;
 }
 /* Utility Classes */
+.block {
+  display: block;
+}
 .flex, .flex-col {
   display: flex;
 }

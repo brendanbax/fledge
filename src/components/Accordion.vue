@@ -23,11 +23,20 @@ export default {
     label: {
       type: String,
       default: 'Label'
+    },
+    expand: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       expanded: false,
+    }
+  },
+  watch: {
+    expand: function () {
+      this.expanded = true
     }
   },
   computed: {
@@ -37,7 +46,7 @@ export default {
     computedLabel() {
       return this.expanded ? `collapse ${this.label}` : `expand ${this.label}`
     }
-  }
+  },
 }
 </script>
 
