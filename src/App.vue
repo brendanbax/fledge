@@ -392,7 +392,9 @@ input[type="radio"],
 input[type="checkbox"] {
   margin-top: .5rem;
   margin-bottom: 1rem;
-  margin-right: .5rem;
+  margin-right: .375rem;
+  width: 1rem;
+  height: 1rem;
 }
 .inline-input {
   margin-right: 1rem;

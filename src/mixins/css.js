@@ -421,10 +421,33 @@ export default {
           font-weight: ${this.text_link.font_weight};
           line-height: ${this.text_link.line_height};
           color: ${this.color_primary};
-          text-decoration: underline;
+          text-decoration: none;
+          display: inline-block;
+          position: relative;
+          transition: color 300ms;
+        }
+        .text-link::after {
+          content: '';
+          position: absolute;
+          bottom: -${this.border_width};
+          left: 0;
+          width: 100%;
+          height: ${this.border_width};
+          background-color: ${this.color_primary};
+          transition: left 240ms, width 240ms;
         }
         .text-link:visited {
           color: ${this.color_primary};
+        }
+        .text-link:hover {
+          color: var(--color-primary-light);
+          transition: color 300ms;
+        }
+        .text-link:hover::after {
+          background-color: var(--color-primary-light);
+          left: -.25rem;
+          width: calc(100% + .5rem);
+          transition: left 240ms, width 240ms;
         }
         .text-button {
           font-family: var(--font-${this.text_button.font_primary ? 'primary' : 'secondary'});
