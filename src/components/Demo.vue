@@ -35,7 +35,7 @@
           <button class="btn-primary bg-light text-primary mt-1" @click="emitEvent('getstarted')">Get Started</button>
         </div>
         <div id="demo-container" class="mt-3">
-          <svg width="100%" height="100%" viewBox="0 0 356 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <svg id="demo-svg" width="100%" height="100%" viewBox="0 0 356 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="Page-1">
               <g id="Group-2">
                 <rect class="text-white" id="page-bg" fill="currentColor" x="0" y="0" width="356" height="200"></rect>
@@ -118,7 +118,7 @@
         <h2 class="text-h3 text-center text-dark">Why use Fledge?</h2>
         <p class="text-body text-center text-dark mt-1">Fledge is purpose-built to improve speed to market of new ideas by simplifying early design exploration. Most user interfaces rely on colors, fonts, type sizes, and button styles.  Fledge makes it easy to explore these options in real time then export the results as CSS so developers can start building features that matter.</p>
         <p class="text-h5 text-center text-dark mt-2">Here are some ways Fledge can help get your next project off the ground!</p>
-        <div class="use-case-container flex-wrap mt-2">
+        <div class="use-case-container flex-wrap mt-2" :class="{'slim': menuOpen}">
           <div class="card use-card flex-col">
             <p class="text-quote mb-2">Our small dev team doesn't always have support from design. Fledge is awesome becasuse we can build out a great looking app without needing Sketch or Figma.</p>
             <div class="profile-row flex">
@@ -159,15 +159,17 @@
       </div>
     </section>
     <!-- Footer -->
-    <footer>
-      <div>
-        email sign up
-      </div>
-      <div>
-        links links links
-      </div>
-      <div>
-        social links and company info
+    <footer class="bg-dark">
+      <div class="max-1200 footer-section" :class="computedClass">
+        <div>
+          email sign up
+        </div>
+        <div>
+          links links links
+        </div>
+        <div>
+          social links and company info
+        </div>
       </div>
     </footer>
   </div>
@@ -264,7 +266,7 @@ export default {
   width: 100%;
   margin-left: 2rem;
 }
-svg {
+#demo-svg {
   border-radius: 1rem;
   width: 100%;
   height: 100%;
@@ -377,6 +379,9 @@ svg {
   flex-basis: calc(33% - 1rem);
   padding: 2rem;
 }
+.use-card:not(:first-child) {
+  margin-left: 1rem;
+}
 .profile-row {
   margin-top: auto;
   align-items: center;
@@ -406,5 +411,31 @@ svg {
   bottom: 0;
   background: linear-gradient(var(--color-primary-light), var(--color-primary-dark));
   z-index: 0;
+}
+@media screen and (max-width: 960px) {
+  .card-row {
+    justify-content: space-around;
+  }
+  .use-card {
+    flex-basis: 100%;
+    margin-bottom: 1rem;
+  }
+  .use-card:not(:first-child) {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .slim .use-card {
+    flex-basis: 100%;
+    margin-bottom: 1rem;
+  }
+  .slim .use-card:not(:first-child) {
+    margin-left: 0;
+  }
+}
+/* Footer style */
+.footer-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 </style>
