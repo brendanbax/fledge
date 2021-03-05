@@ -66,7 +66,7 @@
       <div class="max-1200" :class="computedClass">
         <h2 class="text-h2 text-center text-primary">Real Time Tokens</h2>
         <p class="text-body text-center text-primary">Customize the most common design tokens for your system and view the results in immediately.</p>
-        <div class="card-row mt-3">
+        <div class="card-row mt-3" :class="{'narrow': menuOpen}">
           <div class="card demo-card">
             <h3 class="text-h5 text-secondary">Colors</h3>
             <p class="text-body">Tokens include primary, secondary, dark, light, as well as utility colors for success, info, and errors.</p>
@@ -281,6 +281,7 @@ svg {
   border-radius: var(--global-radius);
   padding: .125rem .5rem;
   z-index: 1;
+  margin-bottom: .5rem;
 }
 .demo-tag::before {
   content: '';
@@ -296,5 +297,41 @@ svg {
 }
 .demo-tag:not(:last-child) {
   margin-right: .5rem;
+}
+@media screen and (max-width: 960px) {
+  .card-row {
+    justify-content: space-around;
+  }
+  .demo-card {
+    flex-basis: calc(50% - 1rem);
+    margin-bottom: 1rem;
+  }
+  .demo-card:not(:first-child) {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .narrow {
+    justify-content: space-around;
+  }
+  .narrow .demo-card {
+    flex-basis: calc(50% - 1rem);
+    margin-bottom: 1rem;
+  }
+  .narrow .demo-card:not(:first-child) {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 960px) {
+  .narrow .demo-card {
+    flex-basis: 100%;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (max-width: 560px) {
+  .demo-card {
+    flex-basis: 100%;
+    margin-bottom: 1rem;
+  }
 }
 </style>
