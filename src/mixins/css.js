@@ -314,7 +314,6 @@ export default {
           border-left: ${this.input.border ? this.border_width + ' solid var(--color-primary)' : 'none'};
           border-right: ${this.input.border ? this.border_width + ' solid var(--color-primary)' : 'none'};
           border-bottom: ${this.input.border || this.input.border_bottom ? this.border_width + ' solid var(--color-primary)' : 'none'};
-          border: ;
           border-radius: ${this.input.radius};
         }
 
