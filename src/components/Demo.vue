@@ -8,7 +8,7 @@
           <p class="text-light text-body">Kickstart your design system with this simple token and class builder.</p>
         </div>
         <div>
-          <button class="btn-primary bg-light text-primary">Download CSS</button>
+          <button class="btn-primary bg-light text-primary mt-1">Download CSS</button>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
           <p class="text-body text-light mt-1 mb-1">Experiment and iterate through your design token ideas without expensive design software or needing to write a single line of code.</p>
           <button class="btn-primary bg-light text-primary mt-1" @click="emitEvent('getstarted')">Get Started</button>
         </div>
-        <div id="demo-container">
+        <div id="demo-container" class="mt-3">
           <svg width="100%" height="100%" viewBox="0 0 356 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="Page-1">
               <g id="Group-2">
@@ -66,40 +66,54 @@
       <div class="max-1200" :class="computedClass">
         <h2 class="text-h2 text-center text-primary">Real Time Tokens</h2>
         <p class="text-body text-center text-primary">Customize the most common design tokens for your system and view the results in immediately.</p>
-        <div class="card-row">
+        <div class="card-row mt-3">
           <div class="card demo-card">
             <h3 class="text-h5 text-secondary">Colors</h3>
             <p class="text-body">Tokens include primary, secondary, dark, light, as well as utility colors for success, info, and errors.</p>
-            <span>tag</span>
-            <span>tag</span>
+            <div class="flex-wrap mt-1">
+              <span class="demo-tag text-caption text-primary">colors</span>
+              <span class="demo-tag text-caption text-primary">branding</span>
+              <span class="demo-tag text-caption text-primary">themes</span>
+            </div>
             <button class="block mt-1 btn-secondary btn-small" @click="emitEvent('colors')">Customize Now</button>
           </div>
           <div class="card demo-card">
             <h3 class="text-h5 text-secondary">Fonts</h3>
-            <p class="text-body">About text...</p>
-            <span>tag</span>
-            <span>tag</span>
+            <p class="text-body">Fledge supports primary and secondary font familys, simply provide a name and link to the font resource to get started.</p>
+            <div class="flex-wrap mt-1">
+              <span class="demo-tag text-caption text-primary">branding</span>
+              <span class="demo-tag text-caption text-primary">Google Fonts</span>
+              <span class="demo-tag text-caption text-primary">type</span>
+            </div>
             <button class="block mt-1 btn-secondary btn-small" @click="emitEvent('fonts')">Customize Now</button>
           </div>
           <div class="card demo-card">
-            <h3 class="text-h5 text-secondary">Type Scale</h3>
-            <p class="text-body">About text...</p>
-            <span>tag</span>
-            <span>tag</span>
+            <h3 class="text-h5 text-secondary">Type</h3>
+            <p class="text-body">The type scale includes 14 styles, each with options for font family, size, weight, and line height.</p>
+            <div class="flex-wrap mt-1">
+              <span class="demo-tag text-caption text-primary">headings</span>
+              <span class="demo-tag text-caption text-primary">body</span>
+              <span class="demo-tag text-caption text-primary">links</span>
+              <span class="demo-tag text-caption text-primary">forms</span>
+            </div>
             <button class="block mt-1 btn-secondary btn-small" @click="emitEvent('type')">Customize Now</button>
           </div>
           <div class="card demo-card">
             <h3 class="text-h5 text-secondary">Buttons</h3>
-            <p class="text-body">About text...</p>
-            <span>tag</span>
-            <span>tag</span>
+            <p class="text-body">Button styles include primary, secondary, and tertiary with includes options for border, fill, shadow, and text capitalization.</p>
+            <div class="flex-wrap mt-1">
+              <span class="demo-tag text-caption text-primary">primary</span>
+              <span class="demo-tag text-caption text-primary">secondary</span>
+              <span class="demo-tag text-caption text-primary">tertiary</span>
+            </div>
             <button class="block mt-1 btn-secondary btn-small" @click="emitEvent('buttons')">Customize Now</button>
           </div>
         </div>
+        <h3 class="text-center mt-3"><a class="text-h3 text-primary">Preview as a blog post &#187;</a></h3>
       </div>
     </section>
     <!-- Text Section -->
-    <section>
+    <section class="bg-light">
       <h2>Subtitle Text</h2>
       <p>Some great content here...</p>
       <ul>
@@ -192,9 +206,6 @@ export default {
     flex-direction: column;
     text-align: center;
   }
-  .banner button {
-    margin-top: 1rem;
-  }
 }
 .nav-container {
   display: flex;
@@ -223,7 +234,6 @@ export default {
 /* SVG Illustration */
 #demo-container {
   width: 100%;
-  margin-top: 3rem;
   margin-left: 2rem;
 }
 svg {
@@ -250,7 +260,6 @@ svg {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 2rem;
 }
 .demo-card {
   flex-basis: calc(25% - 1rem);
@@ -265,5 +274,27 @@ svg {
 .demo-card .text-body {
   flex-grow: 1;
   margin-top: .5rem;
+}
+.demo-tag {
+  position: relative;
+  border: var(--border-width) solid var(--color-primary);
+  border-radius: var(--global-radius);
+  padding: .125rem .5rem;
+  z-index: 1;
+}
+.demo-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--color-primary-light);
+  border-radius: var(--global-radius);
+  opacity: 0.25;
+  z-index: -1;
+}
+.demo-tag:not(:last-child) {
+  margin-right: .5rem;
 }
 </style>
