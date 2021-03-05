@@ -189,6 +189,8 @@ export default {
           --color-danger-light: ${tinycolor(this.color_danger).lighten(12).toString()};
           --color-danger: ${this.color_danger};
           --color-danger-dark: ${tinycolor(this.color_danger).darken(5).toString()};
+
+          --global-radius: ${this.button_radius};
         }
 
         html {
