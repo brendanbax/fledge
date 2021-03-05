@@ -66,7 +66,7 @@
       <div class="max-1200" :class="computedClass">
         <h2 class="text-h2 text-center text-primary">Real Time Tokens</h2>
         <p class="text-body text-center text-primary">Customize the most common design tokens for your system and view the results in immediately.</p>
-        <div class="card-row mt-3" :class="{'narrow': menuOpen}">
+        <div class="card-row mt-3 flex-wrap" :class="{'narrow': menuOpen}">
           <div class="card demo-card">
             <h3 class="text-h5 text-secondary">Colors</h3>
             <p class="text-body">Tokens include primary, secondary, dark, light, as well as utility colors for success, info, and errors.</p>
@@ -114,21 +114,49 @@
     </section>
     <!-- Text Section -->
     <section class="bg-light">
-      <h2>Subtitle Text</h2>
-      <p>Some great content here...</p>
-      <ul>
-        <li>List item 1</li>
-        <li>List item 2</li>
-        <li>List item 3</li>
-        <li>List item 4</li>
-      </ul>
-      <p>More excellent content here...</p>
-      <ol>
-        <li>List item 1</li>
-        <li>List item 2</li>
-        <li>List item 3</li>
-        <li>List item 4</li>
-      </ol>
+      <div class="max-1200 case-section" :class="computedClass">
+        <h2 class="text-h3 text-center text-dark">Why use Fledge?</h2>
+        <p class="text-body text-center text-dark mt-1">Fledge is purpose-built to improve speed to market of new ideas by simplifying early design exploration. Most user interfaces rely on colors, fonts, type sizes, and button styles.  Fledge makes it easy to explore these options in real time then export the results as CSS so developers can start building features that matter.</p>
+        <p class="text-h5 text-center text-dark mt-2">Here are some ways Fledge can help get your next project off the ground!</p>
+        <div class="use-case-container flex-wrap mt-2">
+          <div class="card use-card flex-col">
+            <p class="text-quote mb-2">Our small dev team doesn't always have support from design. Fledge is awesome becasuse we can build out a great looking app without needing Sketch or Figma.</p>
+            <div class="profile-row flex">
+              <div class="profile-pic">
+                <img src="@/assets/user_1.png">
+              </div>
+              <div class="ml-1">
+                <p class="text-overline">Jorden Dennis</p>
+                <p class="text-caption">Development Lead</p>
+              </div>
+            </div>
+          </div>
+          <div class="card use-card flex-col">
+            <p class="text-quote mb-2">As an agency we're always starting new projects with clients. Fledge helps us gain consensus early in the design process so our team can focus on meaningful features.</p>
+            <div class="profile-row flex">
+              <div class="profile-pic">
+                <img src="@/assets/user_2.png">
+              </div>
+              <div class="ml-1">
+                <p class="text-overline">Emmie Parsons</p>
+                <p class="text-caption">Project Manager</p>
+              </div>
+            </div>
+          </div>
+          <div class="card use-card flex-col">
+            <p class="text-quote mb-2">I like using Fledge to experiment with different type and color choices. It makes is easy to see how small changes to your design system can impact other elements.</p>
+            <div class="profile-row flex">
+              <div class="profile-pic">
+                <img src="@/assets/user_3.png">
+              </div>
+              <div class="ml-1">
+                <p class="text-overline">Cory Lowry</p>
+                <p class="text-caption">UX Designer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- Footer -->
     <footer>
@@ -257,8 +285,6 @@ svg {
   padding-bottom: 6rem;
 }
 .card-row {
-  display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
 }
 .demo-card {
@@ -333,5 +359,52 @@ svg {
     flex-basis: 100%;
     margin-bottom: 1rem;
   }
+}
+/* Case Section */
+.case-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.case-section .text-body {
+  max-width: 75ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.use-case-container {
+  justify-content: space-around;
+}
+.use-card {
+  flex-basis: calc(33% - 1rem);
+  padding: 2rem;
+}
+.profile-row {
+  margin-top: auto;
+  align-items: center;
+}
+.profile-pic {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profile-pic > img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(60%) contrast(120%) brightness(120%);
+  opacity: 0.5;
+  z-index: 1;
+}
+.profile-pic::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(var(--color-primary-light), var(--color-primary-dark));
+  z-index: 0;
 }
 </style>
