@@ -160,7 +160,7 @@
     </section>
     <!-- Footer -->
     <footer class="bg-dark">
-      <div class="max-1200 flex footer-section" :class="computedClass">
+      <div class="max-1200 flex-wrap footer-section" :class="[{'nifty': menuOpen},computedClass]">
         <div class="email-container flex-col">
           <h5 class="text-h5 text-secondary mb-1">Newsletter</h5>
           <label>
@@ -475,11 +475,11 @@ export default {
   padding-bottom: 6rem;
 }
 .email-container {
-  flex-basis: 25%;
+  flex-basis: 30%;
   margin-right: 2rem;
 }
 .link-container {
-  flex-basis: 25%;
+  flex-basis: 15%;
 }
 .social-container {
   flex-basis: auto;
@@ -489,5 +489,35 @@ export default {
   width: 2rem;
   height: 2rem;
   margin-right: 1rem;
+}
+@media screen and (max-width: 860px) {
+  .email-container {
+    flex-basis: 50%;
+  }
+  .social-container {
+    flex-basis: 100%;
+    margin-top: 2rem;
+  }
+}
+@media screen and (max-width: 640px) {
+  .link-container {
+    flex-basis: 100%;
+    margin-top: 2rem;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .nifty .email-container {
+    flex-basis: 50%;
+  }
+  .nifty .social-container {
+    flex-basis: 100%;
+    margin-top: 2rem;
+  }
+}
+@media screen and (max-width: 780px) {
+  .nifty .link-container {
+    flex-basis: 100%;
+    margin-top: 2rem;
+  }
 }
 </style>
