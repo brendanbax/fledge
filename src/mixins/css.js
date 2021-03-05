@@ -16,8 +16,8 @@ export default {
       // Colors
       color_light: '#FAFAFA',
       color_dark: '#2E282A',
-      color_primary: '#009fbc',
-      color_secondary: '#00778c',
+      color_primary: '#008ed2',
+      color_secondary: '#1e77bd',
       color_info: '#008DD5',
       color_success: '#81E979',
       color_warning: '#F2BB05',
@@ -27,7 +27,7 @@ export default {
         font_primary: true,
         font_size: '3rem',
         font_weight: '600',
-        line_height: '1.5',
+        line_height: '1.25',
       },
       text_h2: {
         font_primary: true,
@@ -44,7 +44,7 @@ export default {
       text_h4: {
         font_primary: true,
         font_size: '1.75rem',
-        font_weight: '400',
+        font_weight: '600',
         line_height: '1.5',
       },
       text_h5: {
@@ -61,7 +61,7 @@ export default {
       },
       text_body: {
         font_primary: false,
-        font_size: '1rem',
+        font_size: '1.125rem',
         font_weight: '400',
         line_height: '1.5',
       },
@@ -73,7 +73,7 @@ export default {
       },
       text_caption: {
         font_primary: false,
-        font_size: '1rem',
+        font_size: '.75rem',
         font_weight: '400',
         line_height: '1.5',
       },
@@ -91,7 +91,7 @@ export default {
       },
       text_nav: {
         font_primary: false,
-        font_size: '1.25rem',
+        font_size: '1rem',
         font_weight: '400',
         line_height: '1.5',
       },
@@ -127,11 +127,7 @@ export default {
         shadow: false,
         uppercase: true,
       },
-      button_fab: {
-        radius: '4rem'
-      },
       // Containers
-      border_radius: '.5rem',
       border_width: '.0625rem',
       box_shadow: {
         base: '0 .375rem .5rem -.25rem rgba(0,0,0,0.5)',
@@ -273,7 +269,8 @@ export default {
         }
         .btn-fab {
           cursor: pointer;
-          border-radius: ${this.button_fab.radius};
+          border-radius: ${this.button_radius};
+          background-color: var(--color-primary);
           box-shadow: ${this.box_shadow.base};
           width: 3.75rem;
           height: 3.75rem;
@@ -281,11 +278,12 @@ export default {
           line-height: 3.75rem;
           font-weight: bold;
           text-align: center;
-          transition: box-shadow 300ms;
+          transition: background-color 300ms, box-shadow 300ms;
         }
         .btn-fab:hover {
           box-shadow: ${this.box_shadow.hover};
-          transition: box-shadow 300ms;
+          background-color: var(--color-primary-light);
+          transition: background-color 300ms, box-shadow 300ms;
         }
         .card {
           background-color: var(--color-white);
