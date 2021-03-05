@@ -84,7 +84,7 @@
                   type="radio"
                   value="false"
                   v-model="type.val.font_primary"
-                  @input="handleChange($event, 'font_primary', type.prop)"
+                  @change="handleChange($event, 'font_primary', type.prop)"
                 />
                 <span>Secondary</span>
               </label>
@@ -412,11 +412,14 @@ input[type="color"] {
 .block {
   display: block;
 }
-.flex, .flex-col {
+.flex, .flex-col, .flex-wrap {
   display: flex;
 }
 .flex-col {
   flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
 }
 .mt-1 {
   margin-top: 1rem;
