@@ -125,11 +125,15 @@
               <input class="text-input" type="checkbox" v-model="card.shadow" @change="updatePageStyles" />
               <span class="text-label">Shadow</span>
             </label>
+            <label class="inline-input mt-1">
+              <input class="text-input" type="checkbox" v-model="card.hover" @change="updatePageStyles" />
+              <span class="text-label">Hover</span>
+            </label>
           </div>
           <label>
             <div class="text-label">Border Radius</div>
             <input class="text-input" type="text" v-model="card.radius" @input="updatePageStyles" />
-            </label>
+          </label>
         </fieldset>
       </Accordion>
       <Accordion label="Buttons" :expand="showButtons">
@@ -238,6 +242,7 @@ export default {
         {val: this.text_h6, name: 'Heading 6', prop: 'text_h6'},
         {val: this.text_body, name: 'Body', prop: 'text_body'},
         {val: this.text_overline, name: 'Overline', prop: 'text_overline'},
+        {val: this.text_quote, name: 'Quote', prop: 'text_quote'},
         {val: this.text_caption, name: 'Caption', prop: 'text_caption'},
         {val: this.text_label, name: 'Label', prop: 'text_label'},
         {val: this.text_input, name: 'Input', prop: 'text_input'},
@@ -421,11 +426,17 @@ input[type="color"] {
 .flex-wrap {
   flex-wrap: wrap;
 }
+.flex-grow {
+  flex-grow: 1;
+}
 .mt-1 {
   margin-top: 1rem;
 }
 .mb-1 {
   margin-bottom: 1rem;
+}
+.ml-1 {
+  margin-left: 1rem;
 }
 .mt-2 {
   margin-top: 2rem;
@@ -433,10 +444,16 @@ input[type="color"] {
 .mb-2 {
   margin-bottom: 2rem;
 }
+.ml-2 {
+  margin-left: 2rem;
+}
 .mt-3 {
   margin-top: 3rem;
 }
 .mb-3 {
   margin-bottom: 3rem;
+}
+.ml-3 {
+  margin-left: 3rem;
 }
 </style>
