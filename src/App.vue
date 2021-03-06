@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <button class="bg-primary text-light btn-fab" :class="fabObject.class" @click="menuOpen = !menuOpen">{{ fabObject.icon }}</button>
+    <button :class="fabClass" @click="menuOpen = !menuOpen"><Fab :open="menuOpen"/></button>
     <div v-show="menuOpen" id="menu" class="bg-white">
       <Accordion label="Getting Started" :expand="showGetStarted">
         <div class="mb-1 flex-col">
@@ -196,6 +196,7 @@
 import { saveAs } from 'file-saver';
 import CSS from '@/mixins/css.js'
 import Accordion from '@/components/Accordion'
+import Fab from '@/components/Fab'
 import ShadowConfig from '@/components/ShadowConfig'
 import Demo from '@/components/Demo'
 
@@ -206,6 +207,7 @@ export default {
   ],
   components: {
     Accordion,
+    Fab,
     ShadowConfig,
     Demo
   },
@@ -258,12 +260,8 @@ export default {
         {val: this.button_tertiary, name: 'Tertiary', prop: 'button_tertiary'},
       ]
     },
-    fabObject() {
-      if (this.menuOpen) {
-        return {icon: 'hide', class: 'right-320'}
-      } else {
-        return {icon: 'show', class: 'right-1'}
-      }
+    fabClass() {
+      return this.menuOpen ? 'right-320' : 'right-1'
     }
   },
   methods: {

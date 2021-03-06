@@ -281,12 +281,6 @@ export default {
           border-radius: ${this.button_radius};
           background-color: var(--color-primary);
           box-shadow: ${this.box_shadow.base};
-          width: 3.75rem;
-          height: 3.75rem;
-          font-size: 1rem;
-          line-height: 3.75rem;
-          font-weight: bold;
-          text-align: center;
           transition: background-color 300ms, box-shadow 300ms;
         }
         .btn-fab:hover {

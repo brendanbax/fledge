@@ -69,7 +69,7 @@
         <div class="card-row mt-3 flex-wrap" :class="{'narrow': menuOpen}">
           <div class="card demo-card">
             <h3 class="text-h4 text-secondary">Colors</h3>
-            <p class="text-body">Tokens include primary, secondary, dark, light, as well as utility colors for success, info, and errors.</p>
+            <p class="text-body text-dark">Tokens include primary, secondary, dark, light, as well as utility colors for success, info, and errors.</p>
             <div class="flex-wrap mt-1">
               <span class="demo-tag text-caption text-primary">colors</span>
               <span class="demo-tag text-caption text-primary">branding</span>
@@ -79,7 +79,7 @@
           </div>
           <div class="card demo-card">
             <h3 class="text-h4 text-secondary">Fonts</h3>
-            <p class="text-body">Fledge supports primary and secondary font familys, simply provide a name and link to the font resource to get started.</p>
+            <p class="text-body text-dark">Fledge supports primary and secondary font familys, simply provide a name and link to the font resource to get started.</p>
             <div class="flex-wrap mt-1">
               <span class="demo-tag text-caption text-primary">branding</span>
               <span class="demo-tag text-caption text-primary">Google Fonts</span>
@@ -89,7 +89,7 @@
           </div>
           <div class="card demo-card">
             <h3 class="text-h4 text-secondary">Type</h3>
-            <p class="text-body">The type scale includes 14 styles, each with options for font family, size, weight, and line height.</p>
+            <p class="text-body text-dark">The type scale includes 14 styles, each with options for font family, size, weight, and line height.</p>
             <div class="flex-wrap mt-1">
               <span class="demo-tag text-caption text-primary">headings</span>
               <span class="demo-tag text-caption text-primary">body</span>
@@ -100,7 +100,7 @@
           </div>
           <div class="card demo-card">
             <h3 class="text-h4 text-secondary">Buttons</h3>
-            <p class="text-body">Button styles include primary, secondary, and tertiary with includes options for border, fill, shadow, and text capitalization.</p>
+            <p class="text-body text-dark">Button styles include primary, secondary, and tertiary with includes options for border, fill, shadow, and text capitalization.</p>
             <div class="flex-wrap mt-1">
               <span class="demo-tag text-caption text-primary">primary</span>
               <span class="demo-tag text-caption text-primary">secondary</span>
