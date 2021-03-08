@@ -117,6 +117,7 @@
           </div>
         </div>
         <h3 class="text-center mt-3"><a class="text-h3 text-primary">Preview as a blog post &#187;</a></h3>
+        <p class="text-overline text-center text-primary">(coming soon)</p>
       </div>
     </section>
     <!-- Text Section -->
