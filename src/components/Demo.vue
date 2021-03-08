@@ -16,13 +16,18 @@
     <div class="bg-secondary sticky">
       <nav class="max-1200 nav-container" :class="computedClass">
         <div class="text-light text-h3">Fledge</div>
-        <ul>
+        <ul id="nav-items">
           <li class="nav-item"><a class="text-nav text-light">Home</a></li>
           <li class="nav-item"><a class="text-nav text-light">Blog</a></li>
           <li class="nav-item"><a class="text-nav text-light">Stats</a></li>
           <li class="nav-item"><a class="text-nav text-light">Stickers</a></li>
           <li class="nav-item"><button class="btn-primary btn-small">Sign In</button></li>
         </ul>
+        <div id="hamburger">
+          <div class="stripe" id="stripe-1" />
+          <div class="stripe" id="stripe-2" />
+          <div class="stripe" id="stripe-3" />
+        </div>
       </nav>
 
     </div>
@@ -256,6 +261,7 @@ export default {
 .sticky {
   position: sticky;
   top: 0;
+  z-index: 900;
 }
 /* Unique Elements */
 .demo-container {
@@ -276,13 +282,41 @@ export default {
 .nav-container {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   padding: 1rem 0;
 }
 .nav-item {
   display: inline-block;
   margin-left: 1rem;
   cursor: pointer;
+}
+#nav-items {
+  display: block;
+}
+#hamburger {
+  display: none;
+}
+.stripe {
+  width: 100%;
+  height: .125rem;
+  border-radius: .125rem;
+  background-color: var(--color-light);
+}
+@media screen and (max-width: 432px) {
+  #nav-items {
+    display: none;
+  }
+  #hamburger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 2.5rem;
+    height: 1.5rem;
+    padding: .5rem;
+    padding-bottom: .125rem;
+  }
 }
 .hero-bg {
   background: linear-gradient(var(--color-secondary), var(--color-secondary-dark));
