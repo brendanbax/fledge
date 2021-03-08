@@ -188,6 +188,7 @@
       @fonts="handleAccordion('showFonts')"
       @type="handleAccordion('showType')"
       @buttons="handleAccordion('showButtons')"
+      @download="handleDownload"
     />
   </div>
 </template>

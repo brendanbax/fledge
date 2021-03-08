@@ -8,7 +8,7 @@
           <p class="text-light text-body">Kickstart your design system with this simple token and class builder.</p>
         </div>
         <div>
-          <button class="btn-primary bg-light text-primary mt-1">Download CSS</button>
+          <button class="btn-primary bg-light text-primary mt-1" @click="emitEvent('download')">Download CSS</button>
         </div>
       </div>
     </div>
