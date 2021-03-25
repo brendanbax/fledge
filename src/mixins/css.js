@@ -6,11 +6,11 @@ export default {
     return {
       // Font
       font_primary: {
-        url: 'https://fonts.googleapis.com/css2?family=Aleo:wght@300;400;700&display=swap',
-        name: 'Aleo'
+        url: 'https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
+        name: 'Raleway'
       },
       font_secondary: {
-        url: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap',
+        url: 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap',
         name: 'Lato'
       },
       // Colors
@@ -74,7 +74,7 @@ export default {
       text_quote: {
         font_primary: false,
         font_size: '1.25rem',
-        font_weight: '200',
+        font_weight: '300',
         line_height: '1.5',
       },
       text_caption: {
